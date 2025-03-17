@@ -1,0 +1,27 @@
+@import 'tailwindcss';
+
+::-webkit-scrollbar{
+    width:7px;
+    height:7px;
+    
+}
+::-webkit-scrollbar-thumb{
+  background-color:#67666c;
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover{
+  background-color:#6556cd;
+  border-radius: 10px;
+ 
+}
+
+  select option {
+     color:white;
+     background-color: #1f1e24;
+     border:none;
+     overflow:hidden;
+     border:none;
+     outline: none;
+     font-weight:500;
+    }
+   
