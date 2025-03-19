@@ -84,11 +84,11 @@ const Home = () => {
 //  console.log(movie)
 
   return headers && trending && popular && topRated ? (
-    <div className="Home h-screen  w-full flex ">
+    <div className="Home h-screen relative  w-full flex ">
       <SideBar func={setopen} />
       <div id="scrollable-container"
         className={`${
-          open ? "w-[80%]" : "w-[95%]"
+          open ? "w-full" : "w-full"
         } overflow-y-scroll overflow-x-hidden `}
       >
         <Header values={headers} />

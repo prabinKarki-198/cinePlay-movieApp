@@ -69,7 +69,7 @@ const HorizontalCards = ({ data }) => {
       {data.map((item, index) => (
         <Link to={`/${item.media_type || (item.title ? 'movie':'tv')}/details/${item.id}`} 
           key={index}
-          className="min-w-55 h-[40vh] flex flex-col gap-3 mt-2 pt-0.5 rounded-md shadow-xs mb-1 shadow-[#6556cd] "
+          className=" lg:min-w-55 md:min-w-50 sm:min-w-48 min-w-48 h-[40vh] flex flex-col gap-3 mt-2 pt-0.5 rounded-md shadow-xs mb-1 shadow-[#6556cd] "
         >
           <div className=" w-full h-[65%] rounded-md flex justify-center overflow-hidden hover:overflow-hidden">
             {" "}
@@ -109,7 +109,7 @@ const HorizontalCards = ({ data }) => {
               {item.vote_average ? (
                 <h1 className="text-sm font-medium flex items-end ">
                   <i className="text-[#F0BB40] ri-star-s-fill mr-1 text-lg relative top-1"></i>
-                  {item.vote_average}
+                  {item.vote_average.toFixed(1)}
                 </h1>
               ) : (
                 "N/A"

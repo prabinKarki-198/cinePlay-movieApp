@@ -5,7 +5,6 @@ import Loader from "../../loader/Loader";
 
 const Header = ({ values }) => {
   const Headers = values;
-
   console.log(Headers);
   return Headers ? (
     <div
@@ -23,9 +22,11 @@ const Header = ({ values }) => {
           "linear-gradient(to bottom, rgba(0,0,0,1) 85%, rgba(0,0,0,0) 100%)",
       }}
     >
+      <div className="w-[90%] sm:ml-3 lg:ml-0 md:ml-0 ml-3">
       <TopNav />
-      <div className="  px-8 flex flex-col gap-3">
-        <h1 className="text-white text-4xl font-bold ">
+      </div>
+      <div className="  lg:px-8 md:px-6 sm:px-4 px-2 flex flex-col gap-3">
+        <h1 className="text-white lg:text-4xl md:text-3xl sm:text-2xl text-2xl font-bold ">
           {Headers.title ||
             Headers.name ||
             Headers.original_name ||
@@ -45,15 +46,15 @@ const Header = ({ values }) => {
             "No Info"
           )}
         </div>
-        <p className="text-white w-[50%]">
+        <p className="text-white lg:text-xl sm:Text-sm text-sm md:text-lg  lg:w-[60%] md:w-[65%] sm:w-[90%] w-[90%]">
           {Headers.overview.slice(0, 200) + "..."}
         </p>
         <div className="flex gap-3">
-          <Link to={`/${Headers.media_type}/details/${Headers.id}/trailer`} className="bg-[#6556cd] px-3 py-2 rounded-full text-white font-medium">
+          <Link to={`/${Headers.media_type}/details/${Headers.id}/trailer`} className="bg-[#6556cd] px-3 self-center lg:text-lg  md:text-lg sm:text-xs text-sm py-2 rounded-full text-white font-medium">
             {" "}
             <i className="ri-play-circle-fill"></i> Watch Trailer
           </Link>
-          <Link to={`${Headers.media_type}/details/${Headers.id}`} className="bg-zinc-200 font-semibold px-3 py-2 rounded-full text-zinc-600 hover:text-white hover:bg-zinc-500 ">
+          <Link to={`${Headers.media_type}/details/${Headers.id}`} className="bg-zinc-200 self-center lg:text-lg  md:text-lg sm:text-xs text-sm font-semibold px-3 py-2 rounded-full text-zinc-600 hover:text-white hover:bg-zinc-500 ">
             Detail <i className="ri-arrow-right-s-line"></i>
           </Link>
         </div>

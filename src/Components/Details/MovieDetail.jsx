@@ -6,20 +6,20 @@ import Loader from "../../loader/Loader";
 import { retry } from "@reduxjs/toolkit/query";
 import noimage from "/noimage.webp";
 import HorizontalCards from "../templates/HorizontalCards";
-// import Recommendations from "../templates/Recommendations";
+
 
 const movieDetail = () => {
    const {pathname}=useLocation()
   const navigate = useNavigate();
   const { id } = useParams();
   const dispatch = useDispatch();
-  // const [height,setHeight]= useState('min-h-screen overflow-none');
+ 
   const { info } = useSelector((state) => state.movie);
 
   console.log(info);
   useEffect(() => {
     dispatch(asyncLoadMovie(id));
-    // setHeight('min-h-screen overflow-none');
+   
     return () => {
       dispatch(removeMovie());
     };
@@ -74,8 +74,8 @@ const movieDetail = () => {
           </a>
         </div>
       </nav>
-      <div className="h-[68vh] px-6 py-1 flex justify-between  ">
-        <div className="w-[16%] h-[70%]  ">
+      <div className="h-fit lg:px-6 py-1 flex justify-between lg:items-start md:items-center sm:items-center items-center sm:flex-col flex-col md:flex-col lg:flex-row md:gap-4 sm:gap-4 gap-4 lg:gap-0">
+        <div className="lg:w-[16%] lg:h-[70%] md:h-[25rem] w-[50%] sm:h-[20rem] ">
           <img
             className={`${
               !info.details.profile_path ? "object-cover" : "object-cover"
@@ -95,17 +95,11 @@ const movieDetail = () => {
             }
             alt={info.details.title}
           />
-          {/* <div  className='w-[15%] flex gap-1'>
-                               {info.watchProviders && info.watchProviders.flatrate &&  <img className='w-[]' src={`https://image.tmdb.org/t/p/original/${info.watchProviders.flatrate[2].logo_path}`} alt="" />}
-                               {info.watchProviders && info.watchProviders.flatrate &&  <img className='w-[]' src={`https://image.tmdb.org/t/p/original/${info.watchProviders.buy[2].logo_path}`} alt="" />}
-                               {info.watchProviders && info.watchProviders.flatrate &&  <img className='w-[]' src={`https://image.tmdb.org/t/p/original/${info.watchProviders.rent[1].logo_path}`} alt="" />}
-                               {info.watchProviders && info.watchProviders.flatrate &&  <img className='w-[]' src={`https://image.tmdb.org/t/p/original/${info.watchProviders.ads[1].logo_path}`} alt="" />}
-                            
-                            </div> */}
+
         </div>
-        <div className="bg-zinc-600/40 h-full  p-4.5 w-[60%] rounded-md justify-between  flex flex-col    ">
+        <div className="bg-zinc-600/40 h-full  p-4.5  lg:w-[60%] md:w-[90%] sm:w-[90%] w-[90%] rounded-md justify-between  flex flex-col    ">
          <div className="w-full h-[35%] flex flex-col gap-1">
-         <h1 className="text-white text-4xl font-bold ">
+         <h1 className="text-white lg:text-4xl md:text-3xl sm:text-2xl text-xl font-bold ">
             {info.details.title ||
               info.details.name ||
               info.details.original_name ||
@@ -125,31 +119,31 @@ const movieDetail = () => {
               "No Info"
             )}
           </div>
-          <p className="text-white w-[100%] ">
+          <p className="text-white lg:text-lg md:text-md sm:text-sm text-sm w-[100%] ">
             {info.details.overview.length > 450 ? info.details.overview.slice(0, 450) + "...":info.details.overview}
           </p>
          </div>
           <div className="w-full h-[50%] flex flex-col gap-2  justify-center">
-            <h1 className="text-2xl font-bold">Lead Casts</h1>
+            <h1 className="lg:text-2xl md:text-xl sm:text-lg text-lg    font-bold">Lead Casts</h1>
             <div className="w-full max-h-[80%] flex  items-center gap-4 overflow-hidden overflow-x-auto ">
             {
                     info.cast.length > 0 ? (info.cast.slice(0,5).map((item,index)=>(
                             <Link to={`/person/details/${item.id}`} key={item.id} className="flex items-center min-w-36 overflow-hidden rounded flex-col justify-between bg-cover ">
-                                <img className="w-full h-40  hover:scale-105 rounded object-cover object-top" src={item.profile_path ? (`https://image.tmdb.org/t/p/w200/${item.profile_path}`):noimage} alt= 'N/A' />
+                                <img className="w-full lg:h-40 md:h-37 sm:h-35 h-35 hover:scale-105 rounded object-cover lg:object-top md:object-top sm:object-center object-center" src={item.profile_path ? (`https://image.tmdb.org/t/p/w200/${item.profile_path}`):noimage} alt= 'N/A' />
                                 <p className="hover:text-zinc-400 font-medium">{(item.name || item.original_name).length > 15 ? (item.name || item.original_name).slice(0,12)+'...':(item.name || item.original_name)}</p>
                                 </Link>
                     ))):<div className="text-xl font-semibold">No casts images available right now</div>
             }
           </div>
           </div>
-          <div className="h-[10%] flex items-center">
-            <Link  to={`${pathname}/trailer`} className="bg-[#6556cd] hover:border-t-4 border-[#1f1e24] px-3 py-2 rounded-md  text-white font-medium">
+          <div className="h-[10%] flex items-center pt-4">
+            <Link  to={`${pathname}/trailer`} className="bg-[#6556cd] hover:border-t-4 lg:text-lg md:text-md sm:text-sm text-sm border-[#1f1e24] px-3 py-2 rounded-md  text-white font-medium">
                         {" "}
                         <i className="ri-play-circle-fill"></i> Watch Trailer
                       </Link>
           </div>
         </div>
-        <div className="w-[20%] h-[100%]  bg-zinc-600/40 px-5 py-5 hover:scale-102 hover:border-r-5 border-[#6556cd] justify-center flex flex-col gap-2 rounded-md">
+        <div className="lg:w-[20%] w-[90%] h-[100%]  bg-zinc-600/40 p-5 hover:scale-102 hover:border-r-5 border-[#6556cd] justify-center flex flex-col gap-2 rounded-md">
             <h1 className=" flex">
                 <p className="font-semibold">Title:</p>
                 <p className="font-regular pl-2">{info.details.title || info.details.original_title}</p>
@@ -200,7 +194,7 @@ const movieDetail = () => {
 
         </div>
       </div>
-       {info.recommendations.length > 0 ?(<div className="bg-[#1f1e24]/60 my-5 rounded-md  mx-5 px-3">
+       {info.recommendations.length > 0 ?(<div className="bg-[#1f1e24]/60 my-5 rounded-md   mx-5 px-3">
             <h1 className="text-2xl font-semibold text-zinc-400 pt-2">Recommendations</h1>
               <HorizontalCards data={info.recommendations} />
        </div>):''}

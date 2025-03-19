@@ -44,7 +44,7 @@ const People = () => {
   //   console.log(person)
   return person.length > 0 ? (
     <div className="h-screen w-full  pb-10 flex flex-col  ">
-      <div className="flex justify-between items-center px-8 py-4">
+      <div className="flex md:flex-row lg:flex-row flex-col sm:flex-col  justify-between md:items-center lg:items-center sm:items-start items-start lg:px-8 md:px-6 sm:px-4 px-3 py-4">
         <div className="w-[10%] flex items-center justify-around">
           <i
             onClick={() => {
@@ -54,7 +54,7 @@ const People = () => {
           ></i>
           <h1 className="text-2xl font-semibold text-zinc-400">People</h1>
         </div>
-        <div className="w-[90%] pl-40">
+        <div className="md:w-[80%] lg:w-[80%] sm:w-[95%] w-[95%]">
           <TopNav />
         </div>
     

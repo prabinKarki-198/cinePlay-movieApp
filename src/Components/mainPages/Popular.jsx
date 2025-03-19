@@ -44,7 +44,7 @@ const Popular = () => {
   }, [categorys]);
   return popular.length > 0 ? (
     <div className="h-screen w-full  pb-10 flex flex-col  ">
-      <div className="flex justify-between items-center px-8 py-4">
+      <div className="flex md:flex-row lg:flex-row flex-col sm:flex-col  justify-between md:items-center lg:items-center sm:items-start items-start lg:px-8 md:px-6 sm:px-4 px-3 py-4">
         <div className="w-[10%] flex items-center justify-around">
           <i
             onClick={() => {
@@ -54,16 +54,18 @@ const Popular = () => {
           ></i>
           <h1 className="text-2xl font-semibold text-zinc-400"> Popular</h1>
         </div>
-        <div className="w-[80%] pl-20">
+        <div className="md:w-[80%] lg:w-[80%] sm:w-[95%] w-[95%]">
           <TopNav />
         </div>
-        <div className="flex justify-around w-[10%]">
-          <DropDowns
+      <div className="flex sm:w-full w-full md:w-[15%] lg:w-[10%] sm:justify-end  md:justify-around">
+      <div className="flex justify-around md:w-[100%] lg:w-[100%] sm:w-[20%] w-[35%]">
+          <DropDowns 
             title={categorys}
             category={(e) => setCategory(e.target.value)}
             options={["movie", "tv"]}
           />
         </div>
+      </div>
       </div>
       <InfiniteScroll
         loader={<Loader />}

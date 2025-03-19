@@ -10,10 +10,11 @@ import TV from "../Components/mainPages/Tv";
 import People from "../Components/mainPages/People";
 import About from "../Components/mainPages/About";
 import { Contact } from "../Components/mainPages/Contact";
-import MovieDetail from "../Components/Details/movieDetail";
+import MovieDetail from '../Components/Details/MovieDetail';
 import PersonDetail from "../Components/Details/personDetail";
-import TvDetail from "../Components/Details/tvDetail";
+import TVDetail from '../Components/Details/TvDetail';
 import Trailer from "../Components/templates/Trailer";
+import SideBarMobile from '../Components/templates/SideBarMobile'
 
 const Routing = () => {
   return (
@@ -30,10 +31,11 @@ const Routing = () => {
           <Route path="/movie/details/:id/trailer" element={<Trailer />} />
         </Route>
         <Route path="/tv" element={<TV />}></Route>
-        <Route path="/tv/details/:id" element={<TvDetail />} >
+        <Route path="/tv/details/:id" element={<TVDetail />} >
         <Route path="/tv/details/:id/trailer" element={<Trailer />} /></Route>
         <Route path="/person" element={<People />}></Route>
         <Route path="/person/details/:id" element={<PersonDetail />} />
+        {/* <Route path='/sidebar' element={<SideBarMobile />} /> */}
       </Routes>
     </div>
   );

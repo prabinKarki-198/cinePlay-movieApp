@@ -44,7 +44,7 @@ const TV = () => {
   //   console.log(Tv)
   return Tv.length > 0 ? (
     <div className="h-screen w-full  pb-10 flex flex-col  ">
-      <div className="flex justify-between items-center px-8 py-4">
+      <div className="flex md:flex-row lg:flex-row flex-col sm:flex-col  md:justify-between lg:justify-between sm:justify-start md:items-center lg:items-center sm:items-start items-start lg:px-8 md:px-6 sm:px-4 px-3 py-4">
         <div className="w-[6%] flex items-center justify-around">
           <i
             onClick={() => {
@@ -54,16 +54,18 @@ const TV = () => {
           ></i>
           <h1 className="text-2xl font-semibold text-zinc-400">Tv</h1>
         </div>
-        <div className="w-[82%] pl-20">
+        <div className="md:w-[70%] lg:w-[70%] sm:w-[95%] w-[95%]">
           <TopNav />
         </div>
-        <div className="flex justify-around w-[12%]">
+      <div className="flex sm:w-full w-full md:w-[20%] lg:w-[16%] sm:justify-end justify-end  md:justify-around">
+      <div className="flex justify-around  md:w-[100%] lg:w-[100%] sm:w-[30%] w-34">
           <DropDowns
             title={category}
             category={(e) => setcategory(e.target.value)}
             options={["airing_today", "on_the_air", "popular", "top_rated"]}
           />
         </div>
+      </div>
       </div>
       <InfiniteScroll
         loader={<Loader />}

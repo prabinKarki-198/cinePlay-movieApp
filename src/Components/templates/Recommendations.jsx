@@ -9,7 +9,7 @@ const Recommendations = ({data}) => {
           {data.map((item, index) => (
             <Link  
               key={index}
-              className="min-w-55 h-[40vh] flex flex-col gap-3 mt-2 pt-0.5 rounded-md shadow-xs mb-1 shadow-[#6556cd] "
+              className="lg:min-w-55 md:min-w-50 sm:min-w-45 min-w-45 h-[40vh] flex flex-col gap-3 mt-2 pt-0.5 rounded-md shadow-xs mb-1 shadow-[#6556cd] "
             >
               <div className=" w-full h-[65%] rounded-md flex justify-center overflow-hidden hover:overflow-hidden">
                 {" "}

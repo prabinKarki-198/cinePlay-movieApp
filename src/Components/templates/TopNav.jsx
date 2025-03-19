@@ -19,16 +19,16 @@ const TopNav = () => {
   }, [query]);
   // console.log(query);
   return (
-    <div className="relative w-full flex justify-start items-center pl-40 h-[10vh] text-zinc-400 ">
+    <div className="relative w-full flex justify-start items-center md:pl-20 lg:pl-40 sm:pl-10 h-[10vh] text-zinc-400 ">
       <span>
         {" "}
-        <i className="ri-search-2-line text-2xl "></i>
+        <i className="ri-search-2-line lg:text-2xl text-lg sm:text-lg md:text-xl "></i>
       </span>
       <input
         onChange={(e) => setQuery(e.target.value)}
         value={query}
         type="text"
-        className="w-[56%] mx-10 text-zinc-400 placeholder-zinc-200/60 border-none outline-none text-lg "
+        className="md:w-[70%] lg:w-[56%] sm:w-[70%] w-[100%] md:mx-8 lg:mx-10 sm:mx-4 mx-4 sm:placeholder:text-sm md:placeholder:text-md placeholder:text-sm lg:placeholder:text-lg text-zinc-400  placeholder-zinc-200/60 border-none outline-none text-lg "
         placeholder="Search Movies, Tv's and more..."
       />
       {query.length > 0 && (
@@ -40,13 +40,13 @@ const TopNav = () => {
         </span>
       )}
 
-      <div className="absolute bg-zinc-100 w-[50%] max-h-[40vh] top-[90%] overflow-auto mx-16 rounded-md">
+      <div className="absolute bg-zinc-100 md:w-[70%] lg:w-[50%] sm:w-[70%] w-[100%] max-h-[40vh] top-[90%] z-100 overflow-auto md:mx-8 lg:mx-16 sm:mx-6 mx-1 rounded-md">
         {searches &&
           searches.map((item, index) => {
             return (
               <Link to={`/${item.media_type}/details/${item.id}`}
                 key={index}
-                className="flex justify-start items-center h-[10vh] p-6 bg-zinc-100 border-b-2 border-white  text-zinc-700 hover:bg-zinc-200 hover:text-black"
+                className="flex justify-start items-center h-[10vh] md:p-6 lg:p-6 sm:p-2 p-2 bg-zinc-100 border-b-2 border-white  text-zinc-700 hover:bg-zinc-200 hover:text-black"
               >
                 <img
                   className="object-cover w-15 h-15 rounded-md mr-5 "
@@ -62,8 +62,14 @@ const TopNav = () => {
                   alt=""
                 />
                 <div>
-                  <h1 className="font-semibold">
-                    {item.name ||
+                  <h1 className="font-semibold sm:text-xs lg;text-lg md:text-sm text-sm">
+                    {(item.name ||
+                      item.title ||
+                      item.original_title ||
+                      item.original_name).length >20? (item.name ||
+                      item.title ||
+                      item.original_title ||
+                      item.original_name).slice(0,20)+'...': item.name ||
                       item.title ||
                       item.original_title ||
                       item.original_name}

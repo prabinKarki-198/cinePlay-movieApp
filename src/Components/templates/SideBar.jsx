@@ -15,9 +15,7 @@ const SideBar = ({ func }) => {
   
   return (
     <div
-      className={`${open ? "w-[20%] " : "w-[5%]"} ${
-        open ? "p-8 " : "p-0"
-      } flex flex-col items-center  h-screen border-r-2 border-zinc-400/20  rounded pt-8`}
+      className={`${open ? " w-[20%] z-100 p-8 " : "w-18 p-0"}  flex flex-col items-center  h-screen border-r-2 border-zinc-400/20  rounded pt-8`}
     >
       <div
         className={`flex ${
@@ -36,8 +34,8 @@ const SideBar = ({ func }) => {
               } ri-movie-ai-fill mr-2`}
             ></i>
             <span
-              className={`align-baseline  ${
-                open ? "text-white" : "text-transparent"
+              className={`align-baseline    ${
+                open ? "text-white" : "text-none"
               } `}
             >
               CinePlay.
@@ -63,7 +61,7 @@ const SideBar = ({ func }) => {
           </h1>
         ) : (
           <h1
-            className={`text-zinc-200  font-semibold text-lg  self-center mt-8  mb-3`}
+            className={`text-zinc-200  font-semibold lg:text-lg sm:text-sm md:text-lg text-xs  self-center mt-8  mb-3`}
           >
             Feeds
           </h1>
@@ -207,7 +205,7 @@ const SideBar = ({ func }) => {
           )}
         </Link>
         <Link to={'/contact'}
-          className={`hover:bg-[#6556cd] p-4 rounded-lg ${
+          className={`hover:bg-[#6556cd] px-4  rounded-lg ${
             open ? "" : "justify-center"
           } mx-2 duration-300 flex hover:text-[#FFFDD0]`}
         >
