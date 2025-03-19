@@ -53,7 +53,7 @@ const movieDetail = () => {
           <Link to={'/'}> 
             <i
               onClick={() => {
-                navigate("/");
+                navigate(-1);
               }}
               className="ri-arrow-left-line  font-bold   hover:text-[#6556cd]"
             ></i>
