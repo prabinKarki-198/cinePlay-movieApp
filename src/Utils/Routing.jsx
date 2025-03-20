@@ -9,10 +9,9 @@ import People from "../Components/mainPages/People";
 import About from "../Components/mainPages/About";
 import { Contact } from "../Components/mainPages/Contact";
 import MovieDetail from '../Components/Details/MovieDetail';
-import PersonDetail from "../Components/Details/personDetail";
+import PersonDetail from '../Components/Details/PersonDetail';
 import TVDetail from '../Components/Details/TvDetail';
 import Trailer from "../Components/templates/Trailer";
-import SideBarMobile from '../Components/templates/SideBarMobile'
 
 const Routing = () => {
   return (
