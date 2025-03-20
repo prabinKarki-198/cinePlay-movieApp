@@ -5,7 +5,7 @@ import Loader from "../../loader/Loader";
 
 const Header = ({ values }) => {
   const Headers = values;
-  console.log(Headers);
+  // console.log(Headers);
   return Headers ? (
     <div
       className="h-[85vh]   w-full flex flex-col justify-between pb-10 bg-blend-multiply bg-center bg-cover "

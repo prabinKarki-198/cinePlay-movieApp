@@ -10,7 +10,7 @@ const Trailer = () => {
     const navigate = useNavigate();
     const category = pathname.includes('movie')?'movie':'tv';
     const ytvideos = useSelector((state)=>state[category].info.videos)
-    console.log(ytvideos)
+    // console.log(ytvideos)
   return ytvideos ? (
     <div className='absolute top-0 z-[100] items-center h-full w-full bg-[#1e1f24]/100'>
 {ytvideos.key ? (       <div className='relative  w-[100%] pt-10 flex justify-top   flex-col items-center'>
@@ -23,7 +23,7 @@ const Trailer = () => {
             ></i>
             </Link>
         <div className='fixed pt-6 md:h-[80%] sm:h-[65%] h-[50%] lg:w-[80%] md:w-[80%] sm:w-[90%] w-[90%] flex mt-10'>
-        <ReactPlayer className='react-Player' height={'100%'} width={'100%'}  url={`https://www.youtube.com/watch?v=${ytvideos.key}`} />
+        <ReactPlayer className='react-Player' controls={true} height={'100%'} width={'100%'}  url={`https://www.youtube.com/watch?v=${ytvideos.key}`} />
         </div>
        </div>):<Loader />}
     </div>

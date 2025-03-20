@@ -11,14 +11,14 @@ import DropDowns from "../templates/DropDowns";
 
 const movieDetail = () => {
    const {pathname}=useLocation()
-   const [category, setCategory]=useState('movie');
+   const [category, setCategory]=useState('tv');
   const navigate = useNavigate();
   const { id } = useParams();
   const dispatch = useDispatch();
   // const [height,setHeight]= useState('min-h-screen overflow-none');
   const { info } = useSelector((state) => state.person);
 
-  console.log(info);
+  // console.log(info);
   useEffect(() => {
     dispatch(asyncLoadperson  (id));
     // setHeight('min-h-screen overflow-none');
@@ -177,7 +177,7 @@ const movieDetail = () => {
            {
                 info[category+'Credits'].slice(0,15).map((item,index)=>(
                   <li key={item.id} className="hover:text-white p-5 rounded hover:bg-[#1f1e24]/80 duration-300 cursor-pointer">
-                    <Link to={`/${category}/details/${item.id}`}>
+                     (<Link to={`/${category}/details/${item.id}`}>
                           <span>
                             {item.name || item.original_name || item.original_title} 
                           </span>

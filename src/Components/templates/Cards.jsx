@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 import ScrollUpButton from "./ScrollUp";
 
 const Cards = ({ data ,title }) => {
-  console.log(title);
-  console.log(data);
+  // console.log(title);
+  // console.log(data);
   return (
     <div  className="flex flex-wrap justify-center bg-[#1f1e24] md:gap-10 lg:gap-10 sm:gap-6 gap-6">
       {data.map((item, index) => (

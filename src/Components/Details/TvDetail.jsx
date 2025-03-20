@@ -18,7 +18,7 @@ const movieDetail = () => {
   
   const { info } = useSelector((state) => state.tv);
 
-  console.log(info);
+  // console.log(info);
   useEffect(() => {
     dispatch(asyncLoadTv(id));
     return () => {

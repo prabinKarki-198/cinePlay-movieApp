@@ -226,7 +226,7 @@ const SideBar = ({ func }) => {
       </nav>
       
      </div>
-     <div className="text-zinc-400 text-2xl  py-3 ">
+     <div className="text-zinc-400 text-2xl   lg:mb-3 md:mb-2  sm:mb-1 mb-1 ">
      <i className="ri-account-circle-line"></i>
      </div>
     </div>
