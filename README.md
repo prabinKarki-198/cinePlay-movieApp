@@ -1,12 +1,68 @@
-# React + Vite
+# CinePlay 🎬
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern movie and TV show browsing application built with React.
 
-Currently, two official plugins are available:
+## What is CinePlay?
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+CinePlay is a web application where you can:
+- 🎥 Watch trending and popular movies
+- 📺 Browse TV shows
+- 👥 Look up celebrity information
+- ⭐ Get movie ratings and details
 
-## Expanding the ESLint configuration
+## Key Features
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### 🎯 Main Features
+- 🔥 Trending Movies
+- 🌟 Popular Content
+- 📺 TV Shows
+- 👥 Celebrity Profiles
+- ℹ️ About & Contact Pages
+
+### 💻 User Experience
+- 🎨 Clean, dark theme interface
+- 🧭 Easy-to-use navigation
+- 📱 Works on all devices (mobile, tablet, desktop)
+- ✨ Smooth animations and transitions
+
+## Tech Stack
+
+### Frontend
+- ⚛️ React.js - UI Framework
+- 🎨 Tailwind CSS - Styling
+- 🛣️ React Router - Navigation
+- 🎯 Remix Icons - Icon Library
+
+### State Management
+- 🔄 Redux Toolkit
+
+### API Integration
+- 🌐 Axios/Fetch for API calls
+- 🔑 TMDB API for movie data
+
+## Project Structure
+```
+cinePlay-movieApp/
+├── src/
+│   ├── Components/
+│   │   ├── templates/     # Layout components (Sidebar, etc.)
+│   │   ├── store/        # State management
+│   │   └── mainpages/    # Main page components
+│   ├── pages/            # Route pages
+│   ├── assets/           # Images, icons
+│   ├── loader/           # Loading components
+│   └── utils/            # Helper functions
+└── public/               # Static files
+```
+
+## Pages
+- 🏠 Home - Main dashboard
+- 🔥 Trending - Popular movies
+- 🎬 Movies - Movie collection
+- 📺 TV Shows - TV series
+- 👥 People - Celebrity info
+- ℹ️ About - Website info
+- 📞 Contact - Get in touch
+
+## License
+📄 MIT License
