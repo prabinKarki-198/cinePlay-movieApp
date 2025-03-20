@@ -4,7 +4,7 @@ import noimage from '/noimage.webp';
 
 const Recommendations = ({data}) => {
     return (
-        <div className="flex w-[100%] relative overflow-y-hidden overflow-x-scroll gap-5 h-[44vh] pl-0.5  mb-5 pr-1 ">
+        <div className="flex w-[100%] relative justify-around overflow-y-hidden overflow-x-auto gap-5 h-[44vh] pl-0.5 mb-5 pr-1 ">
           {" "}
           {data.map((item, index) => (
             <Link  
@@ -60,7 +60,7 @@ const Recommendations = ({data}) => {
                 {/* <p className='text-gray-500'>{item.overview.slice(0, 100)}...</p> */}
               </div>
               <div className='absolute mt-1  bg-[#6556cd] mx-1 px-2 rounded-md'>
-              <i class="ri-box-3-fill pr-1"></i>
+              <i className="ri-box-3-fill pr-1"></i>
                   {item.episode_count }
                 </div>
             </Link>

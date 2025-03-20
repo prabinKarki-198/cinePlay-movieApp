@@ -15,17 +15,18 @@ const SideBar = ({ func }) => {
   
   return (
     <div
-      className={`${open ? " w-[20%] z-100 p-8 " : "w-18 p-0"}  flex flex-col items-center  h-screen border-r-2 border-zinc-400/20  rounded pt-8`}
+      className={`${open ? " lg:w-[20%] md:w-[25%] lg:relative md:relative absolute bg-[#1f1e24]  z-100 p-2 " : " lg:w-18 md:w-18 sm:w-16 w-13 p-0"}  flex flex-col items-center justify-between  h-screen border-r-2 border-zinc-400/20  rounded pt-6`}
     >
-      <div
+     <div className="w-full">
+     <div
         className={`flex ${
           open ? "justify-between " : "justify-center"
-        } w-[100%] items-center  ${open ? "" : "p-1"}`}
+        } w-[100%] items-center  `}
       >
         {open ? (
           <h1
-            className={`text-2xl  ${
-              open ? "w-[15%]" : "w-0"
+            className={`lg:text-2xl md:text-xl sm:text-2xl   ${
+              open ? "w-[15%] " : "w-0"
             }   font-bold text-white `}
           >
             <i
@@ -35,7 +36,7 @@ const SideBar = ({ func }) => {
             ></i>
             <span
               className={`align-baseline    ${
-                open ? "text-white" : "text-none"
+                open ? "text-white " : "text-none"
               } `}
             >
               CinePlay.
@@ -68,7 +69,7 @@ const SideBar = ({ func }) => {
         )}
         <Link onMouseEnter={mouseEnter} onMouseLeave={mouseLeave}
           to={"/trending"}
-          className={`hover:bg-[#6556cd] relative p-4 rounded-lg ${
+          className={`hover:bg-[#6556cd] relative p-3 rounded-lg ${
             open ? "" : "justify-center"
           }   duration-300  flex w-[100%] hover:text-[#FFFDD0]`}
         >
@@ -88,7 +89,7 @@ const SideBar = ({ func }) => {
         </Link>
         <Link 
           to={"/popular"}
-          className={`hover:bg-[#6556cd] p-4 rounded-lg ${
+          className={`hover:bg-[#6556cd] p-3 rounded-lg ${
             open ? "" : "justify-center"
           }  duration-300 flex hover:text-[#FFFDD0]`}
         >
@@ -108,7 +109,7 @@ const SideBar = ({ func }) => {
         </Link>
         <Link
           to={"/movie"}
-          className={`hover:bg-[#6556cd] p-4 rounded-lg ${
+          className={`hover:bg-[#6556cd] p-3 rounded-lg ${
             open ? "" : "justify-center"
           } duration-300 flex hover:text-[#FFFDD0]`}
         >
@@ -127,7 +128,7 @@ const SideBar = ({ func }) => {
         </Link>
         <Link
           to={"/tv"}
-          className={`hover:bg-[#6556cd] p-4 rounded-lg ${
+          className={`hover:bg-[#6556cd] p-3 rounded-lg ${
             open ? "" : "justify-center"
           }  duration-300 flex hover:text-[#FFFDD0]`}
         >
@@ -146,7 +147,7 @@ const SideBar = ({ func }) => {
         </Link>
         <Link
           to={"/person"}
-          className={`hover:bg-[#6556cd] p-4 rounded-lg ${
+          className={`hover:bg-[#6556cd] p-3 rounded-lg ${
             open ? "" : "justify-center"
           }  duration-300 flex hover:text-[#FFFDD0]`}
         >
@@ -170,16 +171,16 @@ const SideBar = ({ func }) => {
         } border-1 mt-4`}
       />
       <nav className="flex w-[100%] flex-col text-zinc-400 gap-2">
-        <div className="flex items-center justify-center w-[100%] gap-3 ">
+        <div className={`flex items-center  ${open ? "justify-start" :'justify-center'} w-[100%] gap-3 `}>
           <span className="flex pt-2.5">
             <i
               className={`ri-file-paper-fill ${
                 open ? "" : "mt-4"
-              }  text-[#6556cd] text-xl`}
+              }  text-[#6556cd] text-md`}
             ></i>
           </span>
           {open ? (
-            <h1 className="text-white text-xl font-semibold   mt-4 mb-3">
+            <h1 className="text-white text-sm font-semibold   mt-4 mb-3">
               Website Information
             </h1>
           ) : (
@@ -187,7 +188,7 @@ const SideBar = ({ func }) => {
           )}
         </div>
         <Link to={'/about'}
-          className={`hover:bg-[#6556cd] p-4 rounded-lg ${
+          className={`hover:bg-[#6556cd] p-3 rounded-lg ${
             open ? "" : "justify-center"
           } mx-2 duration-300 flex hover:text-[#FFFDD0]`}
         >
@@ -205,8 +206,8 @@ const SideBar = ({ func }) => {
           )}
         </Link>
         <Link to={'/contact'}
-          className={`hover:bg-[#6556cd] px-4  rounded-lg ${
-            open ? "" : "justify-center"
+          className={`hover:bg-[#6556cd]   rounded-lg ${
+            open ? "py-3 pl-3 " : "justify-center p-3"
           } mx-2 duration-300 flex hover:text-[#FFFDD0]`}
         >
           <i
@@ -223,6 +224,11 @@ const SideBar = ({ func }) => {
           )}
         </Link>
       </nav>
+      
+     </div>
+     <div className="text-zinc-400 text-2xl  py-3 ">
+     <i className="ri-account-circle-line"></i>
+     </div>
     </div>
   );
 };

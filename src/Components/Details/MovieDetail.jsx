@@ -60,10 +60,10 @@ const movieDetail = () => {
             target="_blank"
             href={`https://www.wikidata.org/wiki/${info.externalIds.wikidata_id}`}
           >
-            <i class="ri-earth-fill   hover:text-[#6556cd]"></i>
+            <i className="ri-earth-fill   hover:text-[#6556cd]"></i>
           </a>
           <a target="_blank" href={info.details.homepage}>
-            <i class="ri-external-link-fill    hover:text-[#6556cd]"></i>
+            <i className="ri-external-link-fill    hover:text-[#6556cd]"></i>
           </a>
           <a
             target="_blank"

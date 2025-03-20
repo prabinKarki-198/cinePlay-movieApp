@@ -1,9 +1,7 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 import Home from "../Components/mainPages/Home";
-import Loading from "../loader/Loading";
 import Trending from "../Components/mainPages/Trending";
-import Loader from "../loader/Loader";
 import Popular from "../Components/mainPages/Popular";
 import Movie from "../Components/mainPages/Movie";
 import TV from "../Components/mainPages/Tv";

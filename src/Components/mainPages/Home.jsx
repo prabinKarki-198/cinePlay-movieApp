@@ -5,7 +5,6 @@ import axios from "../../Utils/Axios";
 import Header from "../templates/Header";
 import HorizontalCards from "../templates/HorizontalCards";
 import DropDowns from "../templates/DropDowns";
-import Loading from "../../loader/Loading";
 import Loader from "../../loader/Loader";
 import Footer from "../templates/Footer";
 import ScrollUpButton from "../templates/ScrollUp";

@@ -55,10 +55,10 @@ const movieDetail = () => {
             target="_blank"
             href={`https://www.wikidata.org/wiki/${info.externalIds.wikidata_id}`}
           >
-            <i class="ri-earth-fill   hover:text-[#6556cd]"></i>
+            <i className="ri-earth-fill   hover:text-[#6556cd]"></i>
           </a>
           <a target="_blank" href={info.details.homepage}>
-            <i class="ri-external-link-fill    hover:text-[#6556cd]"></i>
+            <i className="ri-external-link-fill    hover:text-[#6556cd]"></i>
           </a>
           <a
             target="_blank"
@@ -193,7 +193,7 @@ const movieDetail = () => {
             <h1 className="text-2xl font-semibold text-zinc-400 pt-2">Recommendations</h1>
               <HorizontalCards data={info.recommendations.length >0 ? info.recommendations : info.similar} />
        </div>):''}
-       {info.details.seasons.length ? (<div className="bg-[#1f1e24]/60 my-5 rounded-md w-fit  mx-5 px-3">
+       {info.details.seasons.length ? (<div className="bg-[#1f1e24]/60 my-5 rounded-md   mx-5 px-3">
             <h1 className="text-2xl font-semibold text-zinc-400 pt-2">Seasons</h1>
               <Recommendations data={info.details.seasons} />
        </div>): '' }
