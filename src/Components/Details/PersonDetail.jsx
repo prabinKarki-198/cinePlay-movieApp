@@ -177,7 +177,7 @@ const movieDetail = () => {
            {
                 info[category+'Credits'].slice(0,15).map((item,index)=>(
                   <li key={item.id} className="hover:text-white p-5 rounded hover:bg-[#1f1e24]/80 duration-300 cursor-pointer">
-                     (<Link to={`/${category}/details/${item.id}`}>
+                     <Link to={`/${category}/details/${item.id}`}>
                           <span>
                             {item.name || item.original_name || item.original_title} 
                           </span>
