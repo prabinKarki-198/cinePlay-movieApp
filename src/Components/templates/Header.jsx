@@ -46,7 +46,7 @@ const Header = ({ values }) => {
             "No Info"
           )}
         </div>
-        <p className="text-white lg:text-xl sm:Text-sm text-sm md:text-lg  lg:w-[60%] md:w-[65%] sm:w-[90%] w-[90%]">
+        <p className="text-white lg:text-xl sm:text-sm text-sm md:text-lg  lg:w-[60%] md:w-[65%] sm:w-[90%] w-[90%]">
           {Headers.overview.slice(0, 200) + "..."}
         </p>
         <div className="flex gap-3">

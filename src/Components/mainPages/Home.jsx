@@ -92,8 +92,8 @@ const Home = () => {
       >
         <Header values={headers} />
         <div className="px-4 py-3 flex w-full  justify-between items-center ">
-          <h1 className="text-2xl font-semibold pt-3 text-zinc-400">Trending</h1>
-          <div className="w-30">
+          <h1 className="lg:text-2xl md:text-xl sm:text-lg text-lg font-semibold pt-3 text-zinc-400">Trending</h1>
+          <div className="lg:w-30 md:w-30 sm:w-25 ">
             <DropDowns
               title="Filter"
               options={["tv", "movie", "all"]}
@@ -104,21 +104,21 @@ const Home = () => {
         <div className="px-3">
           <HorizontalCards data={trending} title={category} />
           <div className="px-1 py-3 flex  justify-between items-center ">
-            <h1 className="text-2xl font-semibold text-zinc-400">Popular</h1>
+            <h1 className="lg:text-2xl md:text-xl sm:text-lg text-lg font-semibold text-zinc-400">Popular</h1>
           </div>
           <HorizontalCards data={popular}    />
           <div className="px-1 py-3 flex  justify-between items-center ">
-            <h1 className="text-2xl font-semibold text-zinc-400">Top Rated</h1>
+            <h1 className="lg:text-2xl md:text-xl sm:text-lg text-lg font-semibold text-zinc-400">Top Rated</h1>
           </div>
           <HorizontalCards data={topRated} />
           <div className="px-1 py-3 flex  justify-between items-center ">
-            <h1 className="text-2xl font-semibold text-zinc-400">
+            <h1 className="lg:text-2xl md:text-xl sm:text-lg text-lg font-semibold text-zinc-400">
               Now Running (Movies)
             </h1>
           </div>
           <HorizontalCards data={upcoming} />
           <div className="px-1 py-3 flex  justify-between items-center ">
-            <h1 className="text-2xl font-semibold text-zinc-400">Tv (Today)</h1>
+            <h1 className="lg:text-2xl md:text-xl sm:text-lg text-lg font-semibold text-zinc-400">Tv (Today)</h1>
           </div>
           <HorizontalCards data={airringTv} />
         </div>

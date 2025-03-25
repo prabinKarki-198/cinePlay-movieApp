@@ -64,12 +64,12 @@ const HorizontalCards = ({ data }) => {
     onTouchStart={handleTouchStart}
     onTouchMove={handleTouchMove}
     onTouchEnd={handleTouchEnd}
-    style={{ cursor: "grab" }} className="flex w-[100%] overflow-y-hidden overflow-x-scroll gap-5 h-[44vh] pl-0.5  mb-5 pr-1 ">
+    style={{ cursor: "grab" }} className="flex w-[100%] overflow-y-hidden overflow-x-scroll gap-5 md:h-[44vh] lg:h-[44vh] sm:h-[42vh] h-[40vh] pl-0.5  mb-5 pr-1 ">
       {" "}
       {data.map((item, index) => (
         <Link to={`/${item.media_type || (item.title ? 'movie':'tv')}/details/${item.id}`} 
           key={index}
-          className=" lg:min-w-55 md:min-w-50 sm:min-w-48 min-w-48 h-[40vh] flex flex-col gap-3 mt-2 pt-0.5 rounded-md shadow-xs mb-1 shadow-[#6556cd] "
+          className=" lg:min-w-55 md:min-w-50 sm:min-w-48 min-w-40 md:h-[40vh] lg:h-[40vh] sm:h-[38vh] h-[36vh] flex flex-col gap-3 mt-2 pt-0.5 rounded-md shadow-xs mb-1 shadow-[#6556cd] "
         >
           <div className=" w-full h-[65%] rounded-md flex justify-center overflow-hidden hover:overflow-hidden">
             {" "}
@@ -82,7 +82,7 @@ const HorizontalCards = ({ data }) => {
             {/* { h1>{item.media_type.toUpperCase()}</h1>} */}
           </div>
           <div className="flex flex-col gap-2 items-center justify-center">
-            <h2 className="text-white text-lg font-medium hover:text-[#6556cd]">
+            <h2 className="text-white lg:text-lg md:text-lg sm:text-sm text-sm font-medium hover:text-[#6556cd]">
               {" "}
               {(
                 item.title ||
@@ -101,14 +101,14 @@ const HorizontalCards = ({ data }) => {
                   item.original_name ||
                   item.original_title}
             </h2>
-            <div className="flex justify-between w-full px-2 items-end text-white font-semibold">
+            <div className="flex justify-between w-full px-2 items-end lg:text-lg md:text-lg sm:text-sm text-sm text-white font-semibold">
               <h3>
-                <i className=" text-[#F0BB40] mr-1 ri-calendar-fill"></i>{" "}
+                <i className=" text-[#F0BB40] lg:text-lg md:text-lg sm:text-sm text-sm mr-1 ri-calendar-fill"></i>{" "}
                 {item.release_date || item.first_air_date || item.air_date}
               </h3>
               {item.vote_average ? (
-                <h1 className="text-sm font-medium flex items-end ">
-                  <i className="text-[#F0BB40] ri-star-s-fill mr-1 text-lg relative top-1"></i>
+                <h1 className="lg:text-lg md:text-lg sm:text-sm text-sm font-medium flex items-end  ">
+                  <i className="text-[#F0BB40] ri-star-s-fill mr-1 self-start  top-1"></i>
                   {item.vote_average.toFixed(1)}
                 </h1>
               ) : (

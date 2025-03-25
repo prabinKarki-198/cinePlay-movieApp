@@ -12,6 +12,7 @@ import MovieDetail from '../Components/Details/MovieDetail';
 import PersonDetail from '../Components/Details/PersonDetail';
 import TVDetail from '../Components/Details/TvDetail';
 import Trailer from "../Components/templates/Trailer";
+import Profile from "../Components/mainPages/Profile";
 
 const Routing = () => {
   return (
@@ -32,6 +33,7 @@ const Routing = () => {
         <Route path="/tv/details/:id/trailer" element={<Trailer />} /></Route>
         <Route path="/person" element={<People />}></Route>
         <Route path="/person/details/:id" element={<PersonDetail />} />
+        <Route path='/profile' element={<Profile />} />
         {/* <Route path='/sidebar' element={<SideBarMobile />} /> */}
       </Routes>
     </div>

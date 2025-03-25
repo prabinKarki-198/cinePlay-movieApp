@@ -3,7 +3,7 @@ const DropDowns = ({ title, options, category }) => {
   return (
     <div className="relative w-full h-fit  ">
       <select
-        className="w-full font-medium  cursor-pointer sm:text-xs md:text-sm lg:text-sm text-xs  text-white p-3 pr-10   border-2 border-zinc-400/20  rounded-md shadow-sm focus:outline-none appearance-none focus:ring-2 focus:ring-[#6556cd] focus:border-[#6556cd]"
+        className="w-full font-medium  cursor-pointer sm:text-xs md:text-sm lg:text-sm text-xs  text-white lg:p-3 md:p-3 sm:p-2 p-2 pr-10   border-2 border-zinc-400/20  rounded-md shadow-sm focus:outline-none appearance-none focus:ring-2 focus:ring-[#6556cd] focus:border-[#6556cd]"
         defaultValue="0"
         onChange={category}
         name="format"

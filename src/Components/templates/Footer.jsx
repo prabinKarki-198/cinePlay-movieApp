@@ -15,7 +15,7 @@ const Footer = () => {
             <h1 className=" font-regular pl-1 ">cinePlay@movie.org</h1>
            </div>
      </div>
-           <div className="text-3xl w-[10%]  justify-end flex ">
+           <div className="lg:text-3xl md:text-2xl sm:text-xl text-xl w-[10%]  justify-end flex ">
            <div className="flex gap-2  text-white ">
            <Link target="_blank" to={"https://www.facebook.com/profile.php?id=100015271812671"}>
             {" "}
@@ -33,7 +33,7 @@ const Footer = () => {
            </div>
  
  <div className="flex flex-col w-[100%] gap-1 px-3 md:self-end self-end lg:self-end sm:self-center ">
-            <div className="flex md:gap-5 lg:gap-5 sm:gap-2 gap-2 flex-row  justify-center lg:text-lg text-xs md:text-sm sm:text-xs">
+            <div className="flex md:gap-5 lg:gap-5 sm:gap-2 gap-2 flex-row text-center  justify-center lg:text-lg text-xs md:text-sm sm:text-xs">
             <h1 className="hover:text-[#6556cd] text-white">Terms of service</h1>
              <h1 className="hover:text-[#6556cd] text-white">Privacy Policy</h1>
              <Link to={'/about'} className="hover:text-[#6556cd] text-white">About us</Link>
