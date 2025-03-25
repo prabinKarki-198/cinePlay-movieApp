@@ -42,7 +42,7 @@ const Footer = () => {
             <div className="text-zinc-400/60 flex flex-col lg:text-lg text-xs md:text-sm sm:text-xs justify-center items-center">
                 <h1 className="text-center">CinePlay does not store any files on our server, we only linked to the media which is hosted on 3rd party services.
                 </h1>
-                <h1>© CinePlay. All rights reserved.</h1>
+                <h1>© CinePlay. All rights reserved.@prabinkarki</h1>
             </div>
            </div>
 
