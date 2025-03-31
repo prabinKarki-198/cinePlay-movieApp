@@ -1,10 +1,20 @@
 import React from 'react'
 import profile from '/profile.jpg'
+import { useNavigate } from 'react-router-dom'
 
 const Profile = () => {
+  const navigate =useNavigate();
   const arrayPhoto=[{image:'https://i.pinimg.com/736x/5a/10/71/5a1071cd925971fdbd17c6da87a1edd7.jpg'},{image:'https://i.pinimg.com/736x/75/be/fd/75befd8d2567c5ef7cb657d585bd1b1a.jpg'},{image:'https://i.pinimg.com/736x/4a/d9/05/4ad9058d5eac2c3cbba9745c0d85fb8a.jpg'},{image:'https://i.pinimg.com/736x/00/ce/95/00ce95f89c4f15811cac9b67bb6f5760.jpg'}]
   return (
-    <div className='w-full min-h-screen bg-[#1f1e24] flex lg:flex-row md:flex-col sm:flex-col flex-col sm:items-center lg:items-start md:items-center items-center justify-center gap-4 py-6 '>
+    <div className='w-full min-h-screen bg-[#1f1e24] relative flex lg:flex-row md:flex-col sm:flex-col flex-col sm:items-center lg:items-start md:items-center items-center justify-center gap-4 py-10 '>
+       <div className="w-[90%] absolute top-1 left-2  ">
+          <i
+            onClick={() => {
+              navigate(-1);
+            }}
+            className="ri-arrow-left-line text-2xl font-semibold text-zinc-400 hover:bg-zinc-400/20 rounded-full p-1 hover:text-[#6556cd]"
+          ></i>
+        </div>
         <div className='lg:w-[20%] md:w-[40%] sm:w-[50%] w-[60%]  h-[50vh] overflow-clip hover:scale-102 bg-zinc-400/10 rounded-lg'>
            <img className='object-cover w-[100%] h-[100%] ' src={profile} alt="" />
         </div>
