@@ -173,12 +173,12 @@ const movieDetail = () => {
               <DropDowns title='category' options={['tv','movie']} category={(e) => setCategory(e.target.value)}  />
               </div>
               </div>
-           <div className="list-disc text-zinc-400 mx-5 max-h-[50vh] my-5 overflow-x-hidden rounded-md overflow-y-auto shadow-xs shadow-[#6556cd] border-2 border-zinc-700 p-5"> 
+           <div className=" text-zinc-400 mx-5 max-h-[50vh] my-3 overflow-x-hidden rounded-md overflow-y-auto shadow-xs shadow-[#6556cd] border-2 border-zinc-700 p-4"> 
            {
                 info[category+'Credits'].slice(0,15).map((item,index)=>(
-                  <li key={item.id} className="hover:text-white p-5 rounded hover:bg-[#1f1e24]/80 duration-300 cursor-pointer">
+                  <li key={item.id} className="hover:text-white p-4 list-disc rounded hover:bg-[#1f1e24]/80 duration-300 cursor-pointer">
                      <Link to={`/${category}/details/${item.id}`}>
-                          <span>
+                          <span >
                             {item.name || item.original_name || item.original_title} 
                           </span>
                           <span className=" flex"><h1 className="font-semibold pr-2">Role:</h1>{item.character}</span>

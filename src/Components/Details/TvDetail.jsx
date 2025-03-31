@@ -132,7 +132,7 @@ const movieDetail = () => {
           </div>
           </div>
           <div className="h-[10%] flex items-center pt-4">
-            <Link  to={`${pathname}/trailer`} className="bg-[#6556cd] hover:border-t-4 lg:text-lg md:text-md sm:text-sm text-sm border-[#1f1e24] px-3 py-2 rounded-md  text-white font-medium">
+            <Link  to={`${pathname}/trailer`} className="bg-[#6556cd] hover:text-[#6556cd] hover:bg-zinc-200 lg:text-lg md:text-md sm:text-sm text-sm border-[#1f1e24] px-3 py-2 rounded-md  text-white font-medium">
                         {" "}
                         <i className="ri-play-circle-fill"></i> Watch Trailer
                       </Link>
@@ -193,7 +193,7 @@ const movieDetail = () => {
             <h1 className="text-2xl font-semibold text-zinc-400 pt-2">Recommendations</h1>
               <HorizontalCards data={info.recommendations.length >0 ? info.recommendations : info.similar} />
        </div>):''}
-       {info.details.seasons.length ? (<div className="bg-[#1f1e24]/60 my-5 rounded-md   mx-5 px-3">
+       {info.details.seasons.length>0 ? (<div className="bg-[#1f1e24]/60 my-5 rounded-md   mx-5 px-3">
             <h1 className="text-2xl font-semibold text-zinc-400 pt-2">Seasons</h1>
               <Recommendations data={info.details.seasons} />
        </div>): '' }

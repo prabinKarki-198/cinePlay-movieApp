@@ -137,7 +137,7 @@ const movieDetail = () => {
           </div>
           </div>
           <div className="h-[10%] flex items-center pt-4">
-            <Link  to={`${pathname}/trailer`} className="bg-[#6556cd] hover:border-t-4 lg:text-lg md:text-md sm:text-sm text-sm border-[#1f1e24] px-3 py-2 rounded-md  text-white font-medium">
+            <Link  to={`${pathname}/trailer`} className="bg-[#6556cd] hover:text-[#6556cd] hover:bg-zinc-200 lg:text-lg md:text-md sm:text-sm text-sm border-[#1f1e24] px-3 py-2 rounded-md  text-white font-medium">
                         {" "}
                         <i className="ri-play-circle-fill"></i> Watch Trailer
                       </Link>

@@ -4,7 +4,7 @@ import noimage from '/noimage.webp';
 
 const Recommendations = ({data}) => {
     return (
-        <div className="flex w-[100%] relative justify-around overflow-y-hidden overflow-x-auto gap-5 h-[44vh] pl-0.5 mb-5 pr-1 ">
+        <div className="flex w-[100%] relative justify-start overflow-y-hidden overflow-x-auto gap-5 h-[44vh] pl-0.5 mb-5 pr-1 ">
           {" "}
           {data.map((item, index) => (
             <Link  

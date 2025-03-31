@@ -37,17 +37,17 @@ export const Contact = () => {
     }
   };
   return data ? (
-    <div className="flex justify-start pt-8  items-center flex-col  w-full h-screen">
+    <div className="flex justify-start pt-8  items-center flex-col  w-full bg-[#1f1e24] min-h-screen">
       <div className="w-[6%] absolute top-5 left-5 flex items-center justify-around">
         <i
           onClick={() => {
             navigate(-1);
           }}
-          className="ri-arrow-left-line md:text-2xl lg:text-2xl sm:text-xl text-lg  font-semibold text-zinc-400 hover:bg-zinc-400/20 rounded-full  hover:text-[#6556cd]"
+          className="ri-arrow-left-line md:text-2xl lg:text-2xl sm:text-xl text-lg px-1  font-semibold text-zinc-400 hover:bg-zinc-400/20 rounded-full  hover:text-[#6556cd]"
         ></i>
         <h1 className="md:text-2xl lg:text-2xl sm:text-xl text-lg  font-semibold text-zinc-400">Back </h1>
       </div>
-      <div className="text-white flex flex-col md:gap-4 sm:gap-4 gap-4 items-center md:w-[60%] lg:w-[50%] sm:w-[70%] w-[70%]  ">
+      <div className="text-white flex flex-col md:gap-4 sm:gap-4 gap-4 items-center md:w-[60%] lg:w-[50%] sm:w-[70%] w-[80%]  ">
         <h1 className="md:text-3xl lg:text-4xl sm:text-2xl text-xl font-bold ">Contact</h1>
         <p className="md:text-lg lg:text-xl sm:text-md text-sm text-zinc-400 text-center ">
           Got a question, collaboration idea, or feedback to share? At CinePlay,
@@ -55,7 +55,7 @@ export const Contact = () => {
           into cinematic action!
         </p>
       </div>
-      <div className="lg:w-[40%] md:w-[50%] sm:w-[65%] w-[70%] p-6 rounded-md ">
+      <div className="lg:w-[40%] md:w-[50%] sm:w-[65%] w-[75%] p-6 rounded-md ">
         <form onSubmit={handleSubmit(handleSubmitData)} className="flex flex-col gap-4 w-[100%]  ">
           <div className="w-[100%] ">
             {" "}
