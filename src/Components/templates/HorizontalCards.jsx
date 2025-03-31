@@ -64,14 +64,14 @@ const HorizontalCards = ({ data }) => {
     onTouchStart={handleTouchStart}
     onTouchMove={handleTouchMove}
     onTouchEnd={handleTouchEnd}
-    style={{ cursor: "grab" }} className="flex w-[100%] overflow-y-hidden overflow-x-scroll gap-5 md:h-[44vh] lg:h-[44vh] sm:h-[42vh] h-[40vh] pl-0.5  mb-5 pr-1 ">
+    style={{ cursor: "grab" }} className="flex w-[100%] overflow-y-hidden overflow-x-scroll gap-5 md:h-[44vh] lg:h-[44vh] sm:h-[40vh] h-[36vh] pl-0.5  lg:mb-5 md:mb-5 sm:mb-3  pr-1 ">
       {" "}
       {data.map((item, index) => (
         <Link to={`/${item.media_type || (item.title ? 'movie':'tv')}/details/${item.id}`} 
           key={index}
-          className=" lg:min-w-55 md:min-w-50 sm:min-w-48 min-w-40 md:h-[40vh] lg:h-[40vh] sm:h-[38vh] h-[36vh] flex flex-col gap-3 mt-2 pt-0.5 rounded-md shadow-xs mb-1 shadow-[#6556cd] "
+          className=" lg:min-w-55 md:min-w-50 sm:min-w-48 min-w-40 md:h-[40vh] lg:h-[40vh] sm:h-[36vh] h-[32vh] flex flex-col gap-3 mt-2 pt-0.5 rounded-md shadow-xs mb-1 shadow-[#6556cd] "
         >
-          <div className=" w-full h-[65%] rounded-md flex justify-center overflow-hidden hover:overflow-hidden">
+          <div className=" w-full md:h-[65%] lg:h-[65%] sm:h-[60%] h-[60%] rounded-md flex justify-center overflow-hidden hover:overflow-hidden">
             {" "}
             <img
               className="object-cover w-[98%] bg-no-repeat  h-[100%] rounded-md hover:scale-105"
