@@ -8,13 +8,14 @@ import noimage from "/noimage.webp";
 import HorizontalCards from "../templates/HorizontalCards";
 import { asyncLoadTv, removetv } from "../Store/actions/tvActions";
 import Recommendations from "../templates/Recommendations";
-
+import { useAuth } from "../../Utils/AuthContext";
 
 const movieDetail = () => {
    const {pathname}=useLocation()
   const navigate = useNavigate();
   const { id } = useParams();
   const dispatch = useDispatch();
+  const { addToLibrary, removeFromLibrary, isInLibrary } = useAuth();
   
   const { info } = useSelector((state) => state.tv);
 
@@ -131,11 +132,26 @@ const movieDetail = () => {
             }
           </div>
           </div>
-          <div className="h-[10%] flex items-center pt-4">
-            <Link  to={`${pathname}/trailer`} className="bg-[#6556cd] hover:text-[#6556cd] hover:bg-zinc-200 lg:text-lg md:text-md sm:text-sm text-sm border-[#1f1e24] px-3 py-2 rounded-md  text-white font-medium">
-                        {" "}
-                        <i className="ri-play-circle-fill"></i> Watch Trailer
-                      </Link>
+          <div className="h-[10%] flex items-center gap-3 pt-4 flex-wrap">
+            <Link to={`${pathname}/trailer`} className="bg-[#6556cd] hover:text-[#6556cd] hover:bg-zinc-200 lg:text-lg md:text-md sm:text-sm text-sm border-[#1f1e24] px-3 py-2 rounded-md text-white font-medium transition-all">
+              <i className="ri-play-circle-fill"></i> Watch Trailer
+            </Link>
+
+            {isInLibrary(info.details.id) ? (
+              <button
+                onClick={() => removeFromLibrary(info.details.id)}
+                className="bg-emerald-600/30 border border-emerald-500/50 hover:bg-red-500/30 hover:border-red-500/50 text-emerald-300 hover:text-red-400 lg:text-lg md:text-md sm:text-sm text-sm px-3 py-2 rounded-md font-medium transition-all flex items-center gap-1.5 cursor-pointer"
+              >
+                <i className="ri-checkbox-circle-fill text-emerald-400"></i> Saved in Library
+              </button>
+            ) : (
+              <button
+                onClick={() => addToLibrary(info.details, 'tv')}
+                className="bg-zinc-700/60 border border-zinc-500/50 hover:bg-[#6556cd] hover:border-[#6556cd] text-white lg:text-lg md:text-md sm:text-sm text-sm px-3 py-2 rounded-md font-medium transition-all flex items-center gap-1.5 cursor-pointer"
+              >
+                <i className="ri-[#6556cd] ri-bookmark-line"></i> Add to Library
+              </button>
+            )}
           </div>
         </div>
         <div className="lg:w-[20%] w-[90%] h-[100%]  bg-zinc-600/40 p-5 hover:scale-102 hover:border-r-5 border-[#6556cd] justify-center flex flex-col gap-2 rounded-md">

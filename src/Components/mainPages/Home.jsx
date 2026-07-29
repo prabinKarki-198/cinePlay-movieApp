@@ -19,6 +19,7 @@ const Home = () => {
   const [airringTv, setAirringTv] = useState(null);
   const [upcoming, setUpcoming] = useState(null);
   const [open, setopen] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const getHeaders = async () => {
     try {
       const { data } = await axios.get("/trending/all/day");
@@ -84,11 +85,18 @@ const Home = () => {
 
   return headers && trending && popular && topRated ? (
     <div className="Home h-screen relative  w-full flex ">
-      <SideBar func={setopen} />
+      {/* Mobile Hamburger */}
+      <button
+        onClick={() => setMobileMenuOpen(true)}
+        className="fixed top-4 left-3 z-50 min-[993px]:hidden text-white text-2xl p-1.5 bg-[#1f1e24]/80 rounded-md backdrop-blur-sm"
+      >
+        <i className="ri-menu-line"></i>
+      </button>
+      <SideBar func={setopen} mobileOpen={mobileMenuOpen} setMobileOpen={setMobileMenuOpen} />
       <div id="scrollable-container"
         className={`${
           open ? "w-full" : "w-full"
-        } overflow-y-scroll overflow-x-hidden `}
+        }         overflow-y-scroll overflow-x-hidden`}
       >
         <Header values={headers} />
         <div className="px-4 py-3 flex w-full  justify-between items-center ">

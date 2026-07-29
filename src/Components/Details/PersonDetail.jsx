@@ -18,7 +18,7 @@ const movieDetail = () => {
   // const [height,setHeight]= useState('min-h-screen overflow-none');
   const { info } = useSelector((state) => state.person);
 
-  // console.log(info);
+  console.log(info);
   useEffect(() => {
     dispatch(asyncLoadperson  (id));
     // setHeight('min-h-screen overflow-none');

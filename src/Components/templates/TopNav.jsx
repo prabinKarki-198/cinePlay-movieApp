@@ -2,7 +2,10 @@ import axios from "../../Utils/Axios";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import noimage from "/noimage.webp";
+import { useAuth } from "../../Utils/AuthContext";
+
 const TopNav = () => {
+  const { user, openAuthModal } = useAuth();
   const [query, setQuery] = useState("");
   const [searches, setSearches] = useState(null);
   const getSearch = async () => {
@@ -34,11 +37,13 @@ const TopNav = () => {
       {query.length > 0 && (
         <span
           onClick={() => setQuery("")}
-          className="hover:bg-zinc-400/40 text-zinc-400 rounded-full px-1"
+          className="hover:bg-zinc-400/40 text-zinc-400 rounded-full px-1 cursor-pointer mr-2"
         >
           <i className="ri-close-line text-2xl"></i>
         </span>
       )}
+
+   
 
       <div className="absolute bg-zinc-100 md:w-[70%] lg:w-[50%] sm:w-[70%] w-[100%] max-h-[40vh] top-[90%] z-100 overflow-auto md:mx-8 lg:mx-16 sm:mx-6 mx-1 rounded-md">
         {searches &&
@@ -98,6 +103,28 @@ const TopNav = () => {
               </Link>
             );
           })}
+      </div>
+         {/* Auth Button */}
+      <div className="ml-auto mr-6">
+        {user ? (
+          <Link
+            to="/profile"
+            className="flex items-center gap-2 bg-zinc-800/80 hover:bg-[#6556cd] text-white px-3 py-1.5 rounded-full text-xs font-semibold transition-all border border-zinc-700/60"
+          >
+            <i className="ri-user-3-fill text-[#6556cd] hover:text-white"></i>
+            <span className="hidden sm:inline">
+              {user?.user_metadata?.full_name || user.email?.split("@")[0]}
+            </span>
+          </Link>
+        ) : (
+          <button
+            onClick={() => openAuthModal("login")}
+            className="flex items-center gap-1.5 bg-[#6556cd] hover:bg-[#5344be] text-white px-4 py-1.5 rounded-full text-xs font-semibold transition-all shadow-md cursor-pointer"
+          >
+            <i className="ri-login-box-line"></i>
+            <span>Log In</span>
+          </button>
+        )}
       </div>
     </div>
   );
