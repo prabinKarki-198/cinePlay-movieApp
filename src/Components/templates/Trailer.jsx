@@ -1,36 +1,53 @@
-import React from 'react'
-import ReactPlayer from 'react-player'
-import { useSelector } from 'react-redux'
-import { Link, useLocation, useNavigate } from 'react-router-dom'
-import NotFound from '../../loader/NotFound'
-import Loader from '../../loader/Loader'
+import React from "react";
+import ReactPlayer from "react-player";
+import { useSelector } from "react-redux";
+import { useLocation, useNavigate } from "react-router-dom";
+import NotFound from "../../loader/NotFound";
+import Loader from "../../loader/Loader";
 
 const Trailer = () => {
-    const {pathname} = useLocation();
-    const navigate = useNavigate();
-    const category = pathname.includes('movie')?'movie':'tv';
-    const ytvideos = useSelector((state)=>state[category].info.videos)
-    // console.log(ytvideos)
-  return ytvideos ? (
-    <div className='absolute top-0 z-[100] items-center h-full w-full bg-[#1e1f24]/100'>
-{ytvideos.key ? (       <div className='relative  w-[100%] pt-10 flex justify-top   flex-col items-center'>
-       <Link className='lg:w-[89%] md:w-[89%] sm:w-[94%] w-[94%] flex fixed  justify-end pr-6'> 
-            <i
-              onClick={() => {
-                navigate(-1);
-              }}
-              className="ri-close-line  text-2xl font-bold   hover:text-[#6556cd]"
-            ></i>
-            </Link>
-        <div className='fixed pt-6 md:h-[80%] sm:h-[65%] h-[50%] lg:w-[80%] md:w-[80%] sm:w-[90%] w-[90%] flex mt-10'>
-        <ReactPlayer className='react-Player' controls={true} height={'100%'} width={'100%'}  url={`https://www.youtube.com/watch?v=${ytvideos.key}`} />
-        </div>
-       </div>):<Loader />}
-    </div>
-  ): <div className='absolute top-0 flex justify-top z-[100] flex-col   items-center   h-full  w-full bg-[#1e1f24]/90 '>
-    <NotFound />       
-    
-  </div>
-}
+  const { pathname } = useLocation();
+  const navigate = useNavigate();
+  const category = pathname.includes("movie") ? "movie" : "tv";
+  const ytvideos = useSelector((state) => state[category]?.info?.videos);
 
-export default Trailer
+  return ytvideos ? (
+    <div className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-black/90 backdrop-blur-md p-4">
+      <button
+        onClick={() => navigate(-1)}
+        className="absolute top-4 right-4 sm:top-6 sm:right-6 text-white hover:text-[#6556cd] text-3xl font-bold p-2 z-[110] cursor-pointer transition-colors"
+        aria-label="Close trailer"
+      >
+        <i className="ri-close-line"></i>
+      </button>
+
+      {ytvideos.key ? (
+        <div className="w-full max-w-4xl aspect-video rounded-2xl overflow-hidden shadow-2xl bg-black">
+          <ReactPlayer
+            className="react-Player"
+            controls={true}
+            playing={true}
+            height={"100%"}
+            width={"100%"}
+            url={`https://www.youtube.com/watch?v=${ytvideos.key}`}
+          />
+        </div>
+      ) : (
+        <Loader />
+      )}
+    </div>
+  ) : (
+    <div className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-black/90 backdrop-blur-md p-4">
+      <button
+        onClick={() => navigate(-1)}
+        className="absolute top-4 right-4 sm:top-6 sm:right-6 text-white hover:text-[#6556cd] text-3xl font-bold p-2 z-[110] cursor-pointer transition-colors"
+        aria-label="Close"
+      >
+        <i className="ri-close-line"></i>
+      </button>
+      <NotFound />
+    </div>
+  );
+};
+
+export default Trailer;

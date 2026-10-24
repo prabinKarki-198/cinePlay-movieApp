@@ -6,101 +6,114 @@ import Loader from "../../loader/Loader";
 
 export const Contact = () => {
   const navigate = useNavigate();
-  const [data,setData]= useState([]);
-  const {register, handleSubmit,reset }= useForm();
-  const handleSubmitData = (data) => {
-    // Send data to server
-    console.log(data);
-    if(data.Name === '' && data.Email === '' && data.Message === ''){
-      toast.error("Please fill in all fields",{
+  const [data, setData] = useState([]);
+  const { register, handleSubmit, reset } = useForm();
+
+  const handleSubmitData = (formData) => {
+    if (!formData.Name?.trim() || !formData.Email?.trim() || !formData.Message?.trim()) {
+      toast.error("Please fill in all fields", {
         position: "top-right",
         autoClose: 3000,
         hideProgressBar: true,
-        // closeOnClick: true, 
         pauseOnHover: true,
         draggable: true,
-      //  backgroundColor: red  
       });
-    }
-    else{
-      toast.success("Message Sent Successfully",{
+    } else {
+      toast.success("Message Sent Successfully", {
         position: "top-right",
         autoClose: 3000,
-        // hideProgressBar: false,
-        // closeOnClick: true, 
-        // pauseOnHover: true,
-        // draggable: true
-      }); 
-      setData((prev)=>[...prev, data]);
-      navigate(-1)  
+        pauseOnHover: true,
+        draggable: true,
+      });
+      setData((prev) => [...prev, formData]);
+      navigate(-1);
       reset();
     }
   };
+
   return data ? (
-    <div className="flex justify-start pt-8  items-center flex-col  w-full bg-[#1f1e24] min-h-screen">
-      <div className="w-[6%] absolute top-5 left-5 flex items-center justify-around">
-        <i
-          onClick={() => {
-            navigate(-1);
-          }}
-          className="ri-arrow-left-line md:text-2xl lg:text-2xl sm:text-xl text-lg px-1  font-semibold text-zinc-400 hover:bg-zinc-400/20 rounded-full  hover:text-[#6556cd]"
-        ></i>
-        <h1 className="md:text-2xl lg:text-2xl sm:text-xl text-lg  font-semibold text-zinc-400">Back </h1>
+    <div className="flex justify-start pt-16 sm:pt-20 items-center flex-col w-full bg-[#1f1e24] min-h-screen px-4 pb-12 relative">
+      {/* Back button */}
+      <div className="absolute top-4 left-4 sm:left-6 flex items-center gap-2 z-10">
+        <button
+          onClick={() => navigate(-1)}
+          className="text-zinc-400 hover:text-white hover:bg-zinc-800 p-2 rounded-full transition-colors cursor-pointer flex items-center justify-center"
+          aria-label="Go back"
+        >
+          <i className="ri-arrow-left-line text-2xl"></i>
+        </button>
+        <h1 className="text-xl sm:text-2xl font-bold text-white tracking-tight">
+          Back
+        </h1>
       </div>
-      <div className="text-white flex flex-col md:gap-4 sm:gap-4 gap-4 items-center md:w-[60%] lg:w-[50%] sm:w-[70%] w-[80%]  ">
-        <h1 className="md:text-3xl lg:text-4xl sm:text-2xl text-xl font-bold ">Contact</h1>
-        <p className="md:text-lg lg:text-xl sm:text-md text-sm text-zinc-400 text-center ">
+
+      <div className="text-white flex flex-col gap-3 items-center max-w-2xl text-center mb-8">
+        <div className="w-12 h-12 rounded-2xl bg-gradient-to-tr from-[#6556cd] to-[#8070eb] flex items-center justify-center shadow-lg shadow-[#6556cd]/30 mb-2">
+          <i className="ri-mail-send-fill text-2xl text-white"></i>
+        </div>
+        <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight">
+          Get In Touch
+        </h1>
+        <p className="text-sm sm:text-base text-zinc-400 max-w-lg leading-relaxed">
           Got a question, collaboration idea, or feedback to share? At CinePlay,
           every inquiry is a scene waiting to unfold. Let’s turn your thoughts
           into cinematic action!
         </p>
       </div>
-      <div className="lg:w-[40%] md:w-[50%] sm:w-[65%] w-[75%] p-6 rounded-md ">
-        <form onSubmit={handleSubmit(handleSubmitData)} className="flex flex-col gap-4 w-[100%]  ">
-          <div className="w-[100%] ">
-            {" "}
-            <h1 className="text-white font-semibold pb-1">Name</h1>
-            <input {...register("Name")}
-              className="placeholder:text-zinc-400/40 w-full text-[#6556cd] border-1 px-3 py-3 outline-none focus:ring-[#6556cd]  focus:border-[#6556cd]   rounded-md border-zinc-400/40 "
+
+      <div className="w-full sm:w-[85%] md:w-[65%] lg:w-[45%] max-w-lg bg-zinc-850/60 p-6 sm:p-8 rounded-2xl border border-zinc-700/50 shadow-2xl backdrop-blur-sm">
+        <form onSubmit={handleSubmit(handleSubmitData)} className="flex flex-col gap-4 w-full">
+          <div>
+            <label className="text-zinc-300 text-sm font-semibold block mb-1.5">
+              Name
+            </label>
+            <input
+              {...register("Name")}
+              className="w-full bg-zinc-800/80 border border-zinc-700 focus:border-[#6556cd] text-white px-3.5 py-2.5 rounded-xl outline-none text-sm transition-all focus:ring-2 focus:ring-[#6556cd]/20 placeholder-zinc-500"
               type="text"
               placeholder="Enter Your Name"
             />
           </div>
+
           <div>
-            <h1 className="text-white font-semibold pb-1">Email</h1>
-            <input {...register("Email")}
-              className="placeholder:text-zinc-400/40 w-full border-1 text-[#6556cd] px-3 py-3  outline-none focus:ring-[#6556cd]  focus:border-[#6556cd] rounded-md border-zinc-400/40"
+            <label className="text-zinc-300 text-sm font-semibold block mb-1.5">
+              Email
+            </label>
+            <input
+              {...register("Email")}
+              className="w-full bg-zinc-800/80 border border-zinc-700 focus:border-[#6556cd] text-white px-3.5 py-2.5 rounded-xl outline-none text-sm transition-all focus:ring-2 focus:ring-[#6556cd]/20 placeholder-zinc-500"
               type="email"
               placeholder="Enter Your Email Address"
             />
           </div>
 
           <div>
-            <h1 className="text-white font-semibold pb-1">Message</h1>
-            <textarea {...register("Message")}
-              className="placeholder:text-zinc-400/40 w-full border-1 text-[#6556cd] px-3 py-3 outline-none focus:ring-[#6556cd]  focus:border-[#6556cd]  rounded-md border-zinc-400/40"
-              rows={"4"}
-              placeholder="Enter Message "
+            <label className="text-zinc-300 text-sm font-semibold block mb-1.5">
+              Message
+            </label>
+            <textarea
+              {...register("Message")}
+              className="w-full bg-zinc-800/80 border border-zinc-700 focus:border-[#6556cd] text-white px-3.5 py-2.5 rounded-xl outline-none text-sm transition-all focus:ring-2 focus:ring-[#6556cd]/20 placeholder-zinc-500 resize-none"
+              rows={4}
+              placeholder="Enter your message..."
             />
           </div>
-          <div className="flex justify-center">
-            <button 
-              className="py-2 px-3 hover:text-white font-semibold rounded-md bg-zinc-400 text-black  hover:bg-[#6556cd]"
+
+          <div className="flex justify-center mt-2">
+            <button
+              className="w-full py-3 px-6 text-white font-semibold rounded-xl bg-[#6556cd] hover:bg-[#5344be] shadow-lg shadow-[#6556cd]/30 transition-all cursor-pointer flex items-center justify-center gap-2"
               type="submit"
             >
-              Submit
+              <i className="ri-send-plane-fill"></i>
+              <span>Send Message</span>
             </button>
           </div>
         </form>
       </div>
-      {/* {data.map((item, index)=>{
-        return <div key={index} >
-          <h1>Name: {item.Name}</h1>
-          <h1>Email: {item.Email}</h1>
-          <h1>Message: {item.Message}</h1>
-          <hr />
-        </div>
-      })} */}
     </div>
-  ): <Loader />
+  ) : (
+    <Loader />
+  );
 };
+
+export default Contact;

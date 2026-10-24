@@ -3,53 +3,82 @@ import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <div className="w-full flex flex-col justify-between gap-5 h-[25vh] sm:p-3 p-3 lg:p-5 md:p-5">
-      <div className="flex md:w-[100%] sm:w-[100%] gap-2 flex-row justify-between items-center ">
-     <div className="">
-     <div className="flex  gap-2 sm:text-xl md:text-2xl lg:text-4xl items-center text-xl  text-white">
-          <i className="ri-movie-ai-fill  text-[#6556cd]"></i>
-          <h1 className="font-bold ">CinePlay.</h1>
+    <footer className="w-full flex flex-col justify-between gap-6 min-h-[22vh] h-auto p-4 sm:p-6 lg:p-8 mt-4">
+      <div className="flex flex-col sm:flex-row gap-4 justify-between items-center w-full">
+        <div className="flex flex-col items-center sm:items-start text-center sm:text-left">
+          <Link to="/" className="flex gap-2 text-2xl sm:text-3xl items-center text-white group">
+            <i className="ri-movie-ai-fill text-[#6556cd] group-hover:scale-110 transition-transform"></i>
+            <span className="font-bold tracking-tight">
+              CinePlay<span className="text-[#6556cd]">.</span>
+            </span>
+          </Link>
+          <div className="flex text-xs sm:text-sm text-zinc-400 mt-1">
+            <span className="font-medium text-zinc-500 mr-1.5">Email:</span>
+            <a
+              href="mailto:cinePlay@movie.org"
+              className="text-zinc-400 hover:text-[#6556cd] transition-colors"
+            >
+              cinePlay@movie.org
+            </a>
+          </div>
         </div>
-        <div className=" flex text-xs  md:text-sm lg:text-xl  sm:justify-center md:justify-start lg:justify-start   sm:text-xs text-zinc-400/20">
-            <h1 className=" font-bold">Email:</h1>
-            <h1 className=" font-regular pl-1 ">cinePlay@movie.org</h1>
-           </div>
-     </div>
-           <div className="lg:text-3xl md:text-2xl sm:text-xl text-xl w-[10%]  justify-end flex ">
-           <div className="flex gap-2  text-white ">
-           <Link target="_blank" to={"https://www.facebook.com/profile.php?id=100015271812671"}>
-            {" "}
-            <i className="ri-facebook-circle-fill  hover:text-[#6556cd]"></i>
-          </Link>
-          <Link target="_blank"  to={"https://www.linkedin.com"}>
-            <i className="ri-linkedin-box-fill hover:text-[#6556cd]"></i>
-          </Link>
-          <Link target="_blank" to={"https://www.telegram.org"}>
-            {" "}
-            <i className="ri-telegram-fill hover:text-[#6556cd]"></i>
-          </Link>
-           </div>
+
+        {/* Social Icons */}
+        <div className="flex items-center gap-3 text-2xl text-zinc-400">
+          <a
+            target="_blank"
+            rel="noreferrer"
+            href="https://www.facebook.com"
+            className="hover:text-[#6556cd] transition-colors p-1"
+            aria-label="Facebook"
+          >
+            <i className="ri-facebook-circle-fill"></i>
+          </a>
+          <a
+            target="_blank"
+            rel="noreferrer"
+            href="https://www.linkedin.com"
+            className="hover:text-[#6556cd] transition-colors p-1"
+            aria-label="LinkedIn"
+          >
+            <i className="ri-linkedin-box-fill"></i>
+          </a>
+          <a
+            target="_blank"
+            rel="noreferrer"
+            href="https://www.telegram.org"
+            className="hover:text-[#6556cd] transition-colors p-1"
+            aria-label="Telegram"
+          >
+            <i className="ri-telegram-fill"></i>
+          </a>
         </div>
-           </div>
- 
- <div className="flex flex-col w-[100%] gap-1 px-3 md:self-end self-end lg:self-end sm:self-center ">
-            <div className="flex md:gap-5 lg:gap-5 sm:gap-2 gap-2 flex-row text-center  justify-center lg:text-lg text-xs md:text-sm sm:text-xs">
-            <h1 className="hover:text-[#6556cd] text-white">Terms of service</h1>
-             <h1 className="hover:text-[#6556cd] text-white">Privacy Policy</h1>
-             <Link to={'/about'} className="hover:text-[#6556cd] text-white">About us</Link>
-             <Link to={'/contact'} className="hover:text-[#6556cd] text-white">Contact</Link>
-            </div>
-            <div className="text-zinc-400/60 flex flex-col lg:text-lg text-xs md:text-sm sm:text-xs justify-center items-center">
-                <h1 className="text-center">CinePlay does not store any files on our server, we only linked to the media which is hosted on 3rd party services.
-                </h1>
-                <h1>© CinePlay. All rights reserved.@prabinkarki</h1>
-            </div>
-           </div>
+      </div>
 
+      <div className="flex flex-col w-full gap-3 border-t border-zinc-800/80 pt-4">
+        <div className="flex flex-wrap gap-x-6 gap-y-2 justify-center text-xs sm:text-sm text-zinc-400">
+          <span className="hover:text-white cursor-pointer transition-colors">
+            Terms of Service
+          </span>
+          <span className="hover:text-white cursor-pointer transition-colors">
+            Privacy Policy
+          </span>
+          <Link to="/about" className="hover:text-white transition-colors">
+            About Us
+          </Link>
+          <Link to="/contact" className="hover:text-white transition-colors">
+            Contact
+          </Link>
+        </div>
 
-      
-      
-    </div>
+        <div className="text-zinc-400 flex flex-col text-[11px] sm:text-xs justify-center items-center text-center gap-1">
+          <p className="max-w-xl">
+            CinePlay does not store any media files on its servers. All content is linked from 3rd party providers.
+          </p>
+          <p>© {new Date().getFullYear()} CinePlay. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
   );
 };
 
