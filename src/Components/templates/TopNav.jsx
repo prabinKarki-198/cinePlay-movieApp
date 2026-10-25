@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import noimage from "/noimage.webp";
 import { useAuth } from "../../Utils/AuthContext";
 
-const TopNav = () => {
+const TopNav = ({ setMobileMenuOpen }) => {
   const { user, openAuthModal } = useAuth();
   const [query, setQuery] = useState("");
   const [searches, setSearches] = useState(null);
@@ -44,50 +44,104 @@ const TopNav = () => {
   return (
     <div
       ref={searchRef}
-      className="relative w-full flex justify-between items-center h-[9vh] min-h-[56px] text-zinc-400 px-3 sm:px-6 md:px-8"
+      className={`relative w-full flex flex-col justify-center text-zinc-400 px-3 sm:px-6 ${
+        setMobileMenuOpen ? "pt-3 pb-2" : "py-2"
+      }`}
     >
-      {/* Search Bar Container */}
-      <div className="flex items-center flex-1 max-w-2xl bg-zinc-800/40 hover:bg-zinc-800/70 focus-within:bg-zinc-800/90 border border-zinc-700/40 focus-within:border-[#6556cd] rounded-full px-3.5 py-1.5 transition-all">
-        <i className="ri-search-2-line text-lg sm:text-xl text-zinc-400 mr-2 shrink-0"></i>
-        <input
-          onChange={(e) => setQuery(e.target.value)}
-          value={query}
-          type="text"
-          className="w-full bg-transparent border-none outline-none text-zinc-100 placeholder-zinc-400 text-sm sm:text-base font-normal"
-          placeholder="Search movies, TV shows, actors..."
-        />
-        {query.length > 0 && (
+      {/* Mobile Row 1 (above): Hamburger Menu + Brand Logo + Login/Profile Button */}
+      {setMobileMenuOpen && (
+        <div className="flex lg:hidden items-center justify-between w-full mb-2.5">
+          {/* Hamburger Menu Button */}
           <button
-            onClick={() => setQuery("")}
-            className="text-zinc-400 hover:text-white p-1 rounded-full cursor-pointer transition-colors shrink-0"
-            aria-label="Clear search"
+            onClick={() => setMobileMenuOpen(true)}
+            className="text-white text-xl p-2 bg-[#18171d]/90 hover:bg-[#6556cd] rounded-xl backdrop-blur-md shadow-lg border border-zinc-700/50 transition-all cursor-pointer flex items-center justify-center shrink-0"
+            aria-label="Open navigation menu"
           >
-            <i className="ri-close-line text-lg"></i>
+            <i className="ri-menu-line"></i>
           </button>
-        )}
-      </div>
 
-      {/* Auth Button - shown on desktop in TopNav (on mobile it is in the mobile topbar) */}
-      <div className="ml-3 sm:ml-4 shrink-0 hidden lg:flex">
-        {user ? (
-          <Link
-            to="/profile"
-            className="flex items-center gap-2 bg-zinc-800/80 hover:bg-[#6556cd] text-white px-2.5 sm:px-3 py-1.5 rounded-full text-xs font-semibold transition-all border border-zinc-700/60 shadow-sm"
-          >
-            <i className="ri-user-3-fill text-[#6556cd] group-hover:text-white"></i>
-            <span className="hidden sm:inline max-w-[120px] truncate">
-              {user?.user_metadata?.full_name || user.email?.split("@")[0]}
+          {/* CinePlay Brand Logo */}
+          <Link to="/" className="flex items-center gap-1.5 group">
+            <i className="text-[#6556cd] ri-movie-ai-fill text-2xl group-hover:scale-110 transition-transform"></i>
+            <span className="text-xl font-bold text-white tracking-tight">
+              CinePlay<span className="text-[#6556cd]">.</span>
             </span>
           </Link>
-        ) : (
-          <button
-            onClick={() => openAuthModal("login")}
-            className="flex items-center gap-1.5 bg-[#6556cd] hover:bg-[#5344be] text-white px-3 sm:px-4 py-1.5 rounded-full text-xs font-semibold transition-all shadow-md cursor-pointer whitespace-nowrap"
-          >
-            <i className="ri-login-box-line"></i>
-            <span>Log In</span>
-          </button>
-        )}
+
+          {/* Login / Profile Button */}
+          <div className="shrink-0">
+            {user ? (
+              <Link
+                to="/profile"
+                className="flex items-center gap-1.5 bg-zinc-800/80 hover:bg-[#6556cd] text-white px-2.5 py-1.5 rounded-full text-xs font-semibold transition-all border border-zinc-700/60 shadow-sm"
+              >
+                <i className="ri-user-3-fill text-[#6556cd]"></i>
+                <span className="max-w-[85px] truncate">
+                  {user?.user_metadata?.full_name || user.email?.split("@")[0]}
+                </span>
+              </Link>
+            ) : (
+              <button
+                onClick={() => openAuthModal("login")}
+                className="flex items-center gap-1.5 bg-[#6556cd] hover:bg-[#5344be] text-white px-3 py-1.5 rounded-full text-xs font-semibold transition-all shadow-md cursor-pointer whitespace-nowrap"
+              >
+                <i className="ri-login-box-line"></i>
+                <span>Log In</span>
+              </button>
+            )}
+          </div>
+        </div>
+      )}
+
+      {/* Row 2 (Searchbar full-width on mobile; on desktop flex-row with Auth button) */}
+      <div className="flex items-center justify-between w-full gap-3">
+        {/* Search Bar Container */}
+        <div className="flex items-center flex-1 max-w-2xl bg-zinc-800/40 hover:bg-zinc-800/70 focus-within:bg-zinc-800/90 border border-zinc-700/40 focus-within:border-[#6556cd] rounded-full px-3.5 py-1.5 transition-all">
+          <i className="ri-search-2-line text-lg sm:text-xl text-zinc-400 mr-2 shrink-0"></i>
+          <input
+            onChange={(e) => setQuery(e.target.value)}
+            value={query}
+            type="text"
+            className="w-full bg-transparent border-none outline-none text-zinc-100 placeholder-zinc-400 text-sm sm:text-base font-normal"
+            placeholder="Search movies, TV shows, actors..."
+          />
+          {query.length > 0 && (
+            <button
+              onClick={() => setQuery("")}
+              className="text-zinc-400 hover:text-white p-1 rounded-full cursor-pointer transition-colors shrink-0"
+              aria-label="Clear search"
+            >
+              <i className="ri-close-line text-lg"></i>
+            </button>
+          )}
+        </div>
+
+        {/* Desktop Auth Button (or when setMobileMenuOpen is not passed) */}
+        <div
+          className={`shrink-0 ${
+            setMobileMenuOpen ? "hidden lg:flex" : "flex"
+          }`}
+        >
+          {user ? (
+            <Link
+              to="/profile"
+              className="flex items-center gap-2 bg-zinc-800/80 hover:bg-[#6556cd] text-white px-2.5 sm:px-3 py-1.5 rounded-full text-xs font-semibold transition-all border border-zinc-700/60 shadow-sm"
+            >
+              <i className="ri-user-3-fill text-[#6556cd] group-hover:text-white"></i>
+              <span className="hidden sm:inline max-w-[120px] truncate">
+                {user?.user_metadata?.full_name || user.email?.split("@")[0]}
+              </span>
+            </Link>
+          ) : (
+            <button
+              onClick={() => openAuthModal("login")}
+              className="flex items-center gap-1.5 bg-[#6556cd] hover:bg-[#5344be] text-white px-3 sm:px-4 py-1.5 rounded-full text-xs font-semibold transition-all shadow-md cursor-pointer whitespace-nowrap"
+            >
+              <i className="ri-login-box-line"></i>
+              <span>Log In</span>
+            </button>
+          )}
+        </div>
       </div>
 
       {/* Search Results Dropdown */}

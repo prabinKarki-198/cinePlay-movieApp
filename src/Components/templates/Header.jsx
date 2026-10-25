@@ -3,7 +3,7 @@ import TopNav from "./TopNav";
 import { Link } from "react-router-dom";
 import Loader from "../../loader/Loader";
 
-const Header = ({ values }) => {
+const Header = ({ values, setMobileMenuOpen }) => {
   const Headers = values;
 
   return Headers ? (
@@ -21,7 +21,7 @@ const Header = ({ values }) => {
       }}
     >
       <div className="w-full">
-        <TopNav />
+        <TopNav setMobileMenuOpen={setMobileMenuOpen} />
       </div>
       <div className="lg:px-8 md:px-6 sm:px-4 px-4 flex flex-col gap-3 max-w-4xl">
         <h1 className="text-white lg:text-4xl md:text-3xl sm:text-2xl text-2xl font-bold line-clamp-2">

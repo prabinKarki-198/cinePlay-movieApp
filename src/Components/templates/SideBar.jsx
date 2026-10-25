@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useAuth } from "../../Utils/AuthContext";
 
-const SideBar = ({ func, onlyMobile = false }) => {
+const SideBar = ({ func, mobileOpen, setMobileOpen, onlyMobile = false }) => {
   const { user, openAuthModal } = useAuth();
   const [open, setopen] = useState(false);
   const location = useLocation();
@@ -12,6 +12,29 @@ const SideBar = ({ func, onlyMobile = false }) => {
     if (path !== "/" && location.pathname.startsWith(path)) return true;
     return false;
   };
+
+  // Lock body scroll when mobile drawer is open
+  useEffect(() => {
+    if (mobileOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [mobileOpen]);
+
+  // Close on Escape key
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === "Escape" && mobileOpen && setMobileOpen) {
+        setMobileOpen(false);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [mobileOpen, setMobileOpen]);
 
   const navItems = [
     { to: "/", label: "Home", icon: "ri-home-4-fill" },
@@ -29,109 +52,14 @@ const SideBar = ({ func, onlyMobile = false }) => {
 
   return (
     <>
-      {/* Mobile Topbar Navigation - visible only on mobile / tablet screens (<1024px) */}
-      <header className="lg:hidden w-full bg-[#18171d]/95 backdrop-blur-md border-b border-zinc-800/80 sticky top-0 z-40 shadow-lg shrink-0">
-        {/* Brand & User Action Row */}
-        <div className="flex items-center justify-between px-3.5 py-2.5">
-          {/* Brand Logo */}
-          <Link to="/" className="flex items-center gap-2 group">
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-tr from-[#6556cd] to-[#8070eb] flex items-center justify-center shadow-md shadow-[#6556cd]/25 group-hover:scale-105 transition-transform">
-              <i className="ri-movie-ai-fill text-lg text-white"></i>
-            </div>
-            <span className="text-xl font-bold text-white tracking-tight">
-              CinePlay<span className="text-[#6556cd]">.</span>
-            </span>
-          </Link>
-
-          {/* User Auth / Profile */}
-          <div className="flex items-center gap-2">
-            {user ? (
-              <Link
-                to="/profile"
-                className={`flex items-center gap-2 py-1 px-2.5 rounded-full border transition-all ${
-                  isActive("/profile")
-                    ? "bg-[#6556cd] border-[#6556cd] text-white shadow-md shadow-[#6556cd]/20"
-                    : "bg-zinc-800/80 border-zinc-700/60 text-zinc-300 hover:text-white hover:bg-zinc-800"
-                }`}
-              >
-                <div className="relative flex items-center justify-center">
-                  <i className="ri-account-circle-fill text-lg text-[#6556cd]"></i>
-                  <span className="absolute bottom-0 right-0 w-2 h-2 bg-emerald-500 rounded-full border border-[#18171d]"></span>
-                </div>
-                <span className="text-xs font-semibold max-w-[90px] truncate text-white">
-                  {user?.user_metadata?.full_name || user.email?.split("@")[0]}
-                </span>
-              </Link>
-            ) : (
-              <button
-                onClick={() => openAuthModal("login")}
-                className="flex items-center gap-1.5 bg-[#6556cd] hover:bg-[#5344be] text-white px-3 py-1.5 rounded-full text-xs font-semibold shadow-md shadow-[#6556cd]/25 transition-all cursor-pointer"
-              >
-                <i className="ri-login-box-line"></i>
-                <span>Log In</span>
-              </button>
-            )}
-          </div>
-        </div>
-
-        {/* Horizontal Scrollable Navigation Pills */}
-        <nav className="flex items-center gap-1.5 px-3 py-2 overflow-x-auto no-scrollbar scroll-smooth whitespace-nowrap border-t border-zinc-800/50">
-          {navItems.map((item) => {
-            const active = isActive(item.to);
-            return (
-              <Link
-                key={item.to}
-                to={item.to}
-                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium transition-all shrink-0 ${
-                  active
-                    ? "bg-[#6556cd] text-[#FFFDD0] font-semibold shadow-md shadow-[#6556cd]/30 scale-[1.02]"
-                    : "bg-zinc-800/50 text-zinc-400 hover:text-white hover:bg-zinc-800 border border-zinc-700/30"
-                }`}
-              >
-                <i
-                  className={`${item.icon} text-xs ${
-                    active ? "text-[#FFFDD0]" : "text-[#6556cd]"
-                  }`}
-                ></i>
-                <span>{item.label}</span>
-              </Link>
-            );
-          })}
-
-          <div className="w-[1px] h-4 bg-zinc-700/50 mx-1 shrink-0" />
-
-          {infoItems.map((item) => {
-            const active = isActive(item.to);
-            return (
-              <Link
-                key={item.to}
-                to={item.to}
-                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium transition-all shrink-0 ${
-                  active
-                    ? "bg-[#6556cd] text-[#FFFDD0] font-semibold shadow-md shadow-[#6556cd]/30 scale-[1.02]"
-                    : "bg-zinc-800/50 text-zinc-400 hover:text-white hover:bg-zinc-800 border border-zinc-700/30"
-                }`}
-              >
-                <i
-                  className={`${item.icon} text-xs ${
-                    active ? "text-[#FFFDD0]" : "text-[#6556cd]"
-                  }`}
-                ></i>
-                <span>{item.label}</span>
-              </Link>
-            );
-          })}
-        </nav>
-      </header>
-
       {/* Desktop Sidebar - hidden on mobile, omitted if onlyMobile is true */}
       {!onlyMobile && (
         <aside
           className={`${
             open
-              ? "lg:w-[20%] lg:relative absolute bg-[#1f1e24] z-100 p-3"
-              : "lg:w-18 p-1"
-          } hidden lg:flex flex-col items-center justify-between h-screen border-r-2 border-zinc-400/20 rounded pt-6 transition-all duration-300`}
+              ? "lg:w-[20%] md:w-[25%] lg:relative md:relative absolute bg-[#1f1e24] z-100 p-3"
+              : "lg:w-18 md:w-18 sm:w-15 w-12 p-1"
+          } max-[992px]:hidden min-[993px]:flex flex-col items-center justify-between h-screen border-r-2 border-zinc-400/20 rounded pt-6 transition-all duration-300`}
         >
           <div className="w-full flex flex-col items-center">
             {/* Logo & Toggle */}
@@ -274,6 +202,144 @@ const SideBar = ({ func, onlyMobile = false }) => {
             )}
           </div>
         </aside>
+      )}
+
+      {/* Mobile Overlay Sidebar Drawer */}
+      {mobileOpen && (
+        <div className="fixed inset-0 z-50 min-[993px]:hidden">
+          {/* Backdrop */}
+          <div
+            className="fixed inset-0 bg-black/70 backdrop-blur-sm transition-opacity duration-300"
+            onClick={() => setMobileOpen?.(false)}
+            aria-hidden="true"
+          />
+
+          {/* Drawer content */}
+          <div className="fixed left-0 top-0 bottom-0 w-[280px] max-w-[85vw] bg-[#18171d] border-r border-zinc-800 p-5 flex flex-col justify-between overflow-y-auto animate-slide-in shadow-2xl">
+            <div>
+              {/* Header: Logo + Close */}
+              <div className="flex justify-between items-center pb-4 border-b border-zinc-800">
+                <Link
+                  to="/"
+                  onClick={() => setMobileOpen?.(false)}
+                  className="flex items-center gap-2 group"
+                >
+                  <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-[#6556cd] to-[#8070eb] flex items-center justify-center shadow-lg shadow-[#6556cd]/30">
+                    <i className="ri-movie-ai-fill text-xl text-white"></i>
+                  </div>
+                  <span className="text-xl font-bold text-white tracking-tight group-hover:text-[#6556cd] transition-colors">
+                    CinePlay<span className="text-[#6556cd]">.</span>
+                  </span>
+                </Link>
+                <button
+                  onClick={() => setMobileOpen?.(false)}
+                  className="w-9 h-9 rounded-lg flex items-center justify-center text-zinc-400 hover:text-white hover:bg-zinc-800/80 transition-all cursor-pointer"
+                  aria-label="Close menu"
+                >
+                  <i className="ri-close-line text-2xl"></i>
+                </button>
+              </div>
+
+              {/* Navigation 1: Feeds */}
+              <div className="mt-5">
+                <p className="px-3 text-[11px] font-bold text-zinc-400 uppercase tracking-wider mb-2">
+                  Feeds
+                </p>
+                <nav className="flex flex-col gap-1">
+                  {navItems.map((item) => {
+                    const active = isActive(item.to);
+                    return (
+                      <Link
+                        key={item.to}
+                        onClick={() => setMobileOpen?.(false)}
+                        to={item.to}
+                        className={`flex items-center gap-3 px-3.5 py-2.5 rounded-xl transition-all duration-200 ${
+                          active
+                            ? "bg-[#6556cd] text-[#FFFDD0] font-semibold shadow-md shadow-[#6556cd]/25"
+                            : "text-zinc-400 hover:text-white hover:bg-zinc-800/60"
+                        }`}
+                      >
+                        <i className={`${item.icon} text-lg ${active ? "text-[#FFFDD0]" : "text-[#6556cd]"}`}></i>
+                        <span className="text-sm font-medium">{item.label}</span>
+                        {active && (
+                          <span className="ml-auto w-1.5 h-1.5 rounded-full bg-[#FFFDD0]"></span>
+                        )}
+                      </Link>
+                    );
+                  })}
+                </nav>
+              </div>
+
+              {/* Navigation 2: Website Info */}
+              <div className="mt-5 pt-4 border-t border-zinc-800">
+                <p className="px-3 text-[11px] font-bold text-zinc-400 uppercase tracking-wider mb-2">
+                  Website Info
+                </p>
+                <nav className="flex flex-col gap-1">
+                  {infoItems.map((item) => {
+                    const active = isActive(item.to);
+                    return (
+                      <Link
+                        key={item.to}
+                        onClick={() => setMobileOpen?.(false)}
+                        to={item.to}
+                        className={`flex items-center gap-3 px-3.5 py-2.5 rounded-xl transition-all duration-200 ${
+                          active
+                            ? "bg-[#6556cd] text-[#FFFDD0] font-semibold shadow-md shadow-[#6556cd]/25"
+                            : "text-zinc-400 hover:text-white hover:bg-zinc-800/60"
+                        }`}
+                      >
+                        <i className={`${item.icon} text-lg ${active ? "text-[#FFFDD0]" : "text-[#6556cd]"}`}></i>
+                        <span className="text-sm font-medium">{item.label}</span>
+                        {active && (
+                          <span className="ml-auto w-1.5 h-1.5 rounded-full bg-[#FFFDD0]"></span>
+                        )}
+                      </Link>
+                    );
+                  })}
+                </nav>
+              </div>
+            </div>
+
+            {/* Bottom: Profile & Authentication */}
+            <div className="mt-6 pt-4 border-t border-zinc-800">
+              {user ? (
+                <Link
+                  onClick={() => setMobileOpen?.(false)}
+                  to="/profile"
+                  className={`flex items-center gap-3 p-3 rounded-xl transition-all ${
+                    isActive("/profile")
+                      ? "bg-[#6556cd] text-[#FFFDD0]"
+                      : "bg-zinc-800/40 hover:bg-zinc-800 text-zinc-300 hover:text-white border border-zinc-700/40"
+                  }`}
+                >
+                  <div className="relative">
+                    <i className="ri-account-circle-fill text-2xl text-[#6556cd]"></i>
+                    <span className="absolute bottom-0 right-0 w-2.5 h-2.5 bg-emerald-500 border-2 border-[#18171d] rounded-full"></span>
+                  </div>
+                  <div className="flex flex-col overflow-hidden">
+                    <span className="text-sm font-semibold truncate text-white">
+                      {user?.user_metadata?.full_name || user.email?.split("@")[0]}
+                    </span>
+                    <span className="text-xs text-zinc-400 truncate">{user.email}</span>
+                  </div>
+                  <i className="ri-arrow-right-s-line ml-auto text-zinc-400 text-lg"></i>
+                </Link>
+              ) : (
+                <button
+                  onClick={() => {
+                    openAuthModal("login");
+                    setMobileOpen?.(false);
+                  }}
+                  className="flex items-center justify-center gap-2 w-full py-2.5 px-4 bg-[#6556cd] hover:bg-[#5344be] text-white rounded-xl text-sm font-semibold shadow-lg shadow-[#6556cd]/25 transition-all cursor-pointer"
+                >
+                  <i className="ri-login-box-line text-lg"></i>
+                  <span>Log In / Sign Up</span>
+                </button>
+              )}
+            </div>
+          </div>
+        </div>
       )}
     </>
   );

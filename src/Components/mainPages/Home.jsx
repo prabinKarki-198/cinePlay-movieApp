@@ -19,6 +19,7 @@ const Home = () => {
   const [airringTv, setAirringTv] = useState(null);
   const [upcoming, setUpcoming] = useState(null);
   const [open, setopen] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const getHeaders = async () => {
     try {
@@ -80,16 +81,17 @@ const Home = () => {
   }, [category]);
 
   return headers && trending && popular && topRated ? (
-    <div className="Home h-screen relative w-full flex flex-col lg:flex-row overflow-hidden">
-      {/* Sidebar: Desktop left rail + Mobile topbar */}
-      <SideBar func={setopen} />
+    <div className="Home h-screen relative w-full flex overflow-hidden">
+
+      {/* Sidebar (Desktop rail + Mobile overlay drawer) */}
+      <SideBar func={setopen} mobileOpen={mobileMenuOpen} setMobileOpen={setMobileMenuOpen} />
 
       {/* Main Content Area */}
       <div
         id="scrollable-container"
         className="w-full h-full overflow-y-scroll overflow-x-hidden flex-1"
       >
-        <Header values={headers} />
+        <Header values={headers} setMobileMenuOpen={setMobileMenuOpen} />
 
         <div className="px-4 py-3 flex w-full justify-between items-center">
           <h1 className="lg:text-2xl md:text-xl sm:text-lg text-lg font-semibold pt-3 text-zinc-300">

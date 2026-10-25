@@ -16,6 +16,7 @@ const Trending = () => {
   const [trending, setTrending] = useState([]);
   const [page, setpage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const navigate = useNavigate();
 
   const getTrending = async () => {
@@ -50,12 +51,16 @@ const Trending = () => {
 
   return trending.length > 0 ? (
     <div className="min-h-screen w-full pb-10 flex flex-col bg-[#1f1e24]">
-      {/* Mobile Topbar */}
-      <SideBar onlyMobile={true} />
+      {/* Mobile Sidebar Overlay */}
+      <SideBar
+        mobileOpen={mobileMenuOpen}
+        setMobileOpen={setMobileMenuOpen}
+        onlyMobile={true}
+      />
 
       {/* Top Header Section */}
       <div className="w-full flex flex-col gap-3 px-3 sm:px-6 py-4">
-        {/* Title row with Back button */}
+        {/* Title row with Back button and Mobile menu toggle */}
         <div className="flex items-center justify-between w-full">
           <div className="flex items-center gap-2">
             <button
@@ -68,6 +73,16 @@ const Trending = () => {
             <h1 className="text-xl sm:text-2xl font-bold text-white tracking-tight">
               Trending
             </h1>
+          </div>
+
+          <div className="flex items-center gap-2 min-[993px]:hidden">
+            <button
+              onClick={() => setMobileMenuOpen(true)}
+              className="text-white text-lg p-2 bg-zinc-800/80 hover:bg-[#6556cd] rounded-xl border border-zinc-700/50 transition-all cursor-pointer flex items-center justify-center"
+              aria-label="Open menu"
+            >
+              <i className="ri-menu-line"></i>
+            </button>
           </div>
         </div>
 
