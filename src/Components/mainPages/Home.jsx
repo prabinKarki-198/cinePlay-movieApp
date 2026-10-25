@@ -19,7 +19,6 @@ const Home = () => {
   const [airringTv, setAirringTv] = useState(null);
   const [upcoming, setUpcoming] = useState(null);
   const [open, setopen] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const getHeaders = async () => {
     try {
@@ -81,18 +80,9 @@ const Home = () => {
   }, [category]);
 
   return headers && trending && popular && topRated ? (
-    <div className="Home h-screen relative w-full flex overflow-hidden">
-      {/* Mobile Hamburger Button */}
-      <button
-        onClick={() => setMobileMenuOpen(true)}
-        className="fixed top-3 left-3 z-40 min-[993px]:hidden text-white text-xl p-2 bg-[#18171d]/90 hover:bg-[#6556cd] rounded-xl backdrop-blur-md shadow-lg border border-zinc-700/50 transition-all cursor-pointer flex items-center justify-center"
-        aria-label="Open navigation menu"
-      >
-        <i className="ri-menu-line"></i>
-      </button>
-
-      {/* Sidebar (Desktop rail + Mobile overlay drawer) */}
-      <SideBar func={setopen} mobileOpen={mobileMenuOpen} setMobileOpen={setMobileMenuOpen} />
+    <div className="Home h-screen relative w-full flex flex-col lg:flex-row overflow-hidden">
+      {/* Sidebar: Desktop left rail + Mobile topbar */}
+      <SideBar func={setopen} />
 
       {/* Main Content Area */}
       <div

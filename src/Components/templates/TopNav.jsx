@@ -44,10 +44,10 @@ const TopNav = () => {
   return (
     <div
       ref={searchRef}
-      className="relative w-full flex justify-between items-center h-[9vh] min-h-[56px] text-zinc-400 pl-11 sm:pl-14 md:pl-20 lg:pl-32 pr-2 sm:pr-4"
+      className="relative w-full flex justify-between items-center h-[9vh] min-h-[56px] text-zinc-400 px-3 sm:px-6 md:px-8"
     >
       {/* Search Bar Container */}
-      <div className="flex items-center flex-1 max-w-2xl bg-zinc-800/40 hover:bg-zinc-800/70 focus-within:bg-zinc-800/90 border border-zinc-700/40 focus-within:border-[#6556cd] rounded-full px-3 py-1.5 transition-all">
+      <div className="flex items-center flex-1 max-w-2xl bg-zinc-800/40 hover:bg-zinc-800/70 focus-within:bg-zinc-800/90 border border-zinc-700/40 focus-within:border-[#6556cd] rounded-full px-3.5 py-1.5 transition-all">
         <i className="ri-search-2-line text-lg sm:text-xl text-zinc-400 mr-2 shrink-0"></i>
         <input
           onChange={(e) => setQuery(e.target.value)}
@@ -67,8 +67,8 @@ const TopNav = () => {
         )}
       </div>
 
-      {/* Auth Button */}
-      <div className="ml-3 sm:ml-4 shrink-0">
+      {/* Auth Button - shown on desktop in TopNav (on mobile it is in the mobile topbar) */}
+      <div className="ml-3 sm:ml-4 shrink-0 hidden lg:flex">
         {user ? (
           <Link
             to="/profile"
@@ -92,7 +92,7 @@ const TopNav = () => {
 
       {/* Search Results Dropdown */}
       {searches && searches.length > 0 && query.trim().length > 0 && (
-        <div className="absolute left-3 right-3 sm:left-14 md:left-20 lg:left-32 sm:right-auto sm:w-[80%] md:w-[65%] lg:w-[50%] top-full mt-2 max-h-[50vh] bg-[#23222a]/95 backdrop-blur-xl border border-zinc-700/60 rounded-2xl shadow-2xl overflow-y-auto z-50 divide-y divide-zinc-700/40">
+        <div className="absolute left-3 right-3 sm:left-6 md:left-8 sm:right-auto sm:w-[80%] md:w-[65%] lg:w-[50%] top-full mt-2 max-h-[50vh] bg-[#23222a]/95 backdrop-blur-xl border border-zinc-700/60 rounded-2xl shadow-2xl overflow-y-auto z-50 divide-y divide-zinc-700/40">
           {searches.map((item, index) => {
             const title =
               item.name || item.title || item.original_title || item.original_name;
